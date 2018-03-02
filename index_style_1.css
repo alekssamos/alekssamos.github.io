@@ -1,25 +1,29 @@
 
+////         Просили убрать стили?
+////         Я их убрал!
+////         Радуйтесь!
+
 article, nav, header, footer, section, hgroup, aside { display: block; }
 body {
-font: 10pt Arial, Helvetica, sans-serif;
-background: #e1dfb9;
+//// font: 10pt Arial, Helvetica, sans-serif;
+//// background: #e1dfb9;
 }
 h2 {
-font-size: 1.1em;
-color: #800040;
+//// font-size: 1.1em;
+//// color: #800040;
 // margin-top: 0;
 }
 .container {
 // width: 500px;
 // margin: 0 auto; /* align center */
-background: #f0f0f0;
+//// background: #f0f0f0;
 }
 .header {
-font-size: 2.2em;
+//// font-size: 2.2em;
 text-align: center;
 // padding: 5px;
-background: #8fa09b;
-color: #ffe;
+//// background: #8fa09b;
+//// color: #ffe;
 }
 .sidebar, .nav {
 // margin-top: 10px;
@@ -31,11 +35,11 @@ word-break: break-all;
 .content, .article {
 //margin-left: 130px;
 // padding: 10px;
-background: #fff;
+//// background: #fff;
 }
 .footer {
-background: #8fa09b;
-color: #fff;
+//// background: #8fa09b;
+//// color: #fff;
 // padding: 5px;
 //clear: left;
 }
