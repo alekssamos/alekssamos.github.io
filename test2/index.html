@@ -105,7 +105,8 @@ if (qindex < maxindex) {
 qindex += 1;
 start();
 }
- if (qindex == maxindex) {
+ if (qindex >= maxindex) {
+qindex = 0;
 finish();
 }
 }
