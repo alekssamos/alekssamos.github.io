@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="UTF-8">
+		<title>Dropbox Direct link generator</title>
+		<script type="text/javascript">
+function getlink() {
+	var inp = document.getElementById("lnk").value;
+	if(inp.indexOf('dl=0')>0) inp = inp.replace('dl=0', 'dl=1');
+	else inp += '?dl=1';
+	if(inp.indexOf('dl=')==-1) inp += '?dl=1';
+	document.getElementById("v1").value = inp;
+	inp = inp.split("?")[0].replace('www.dropbox.', 'dl.dropboxusercontent.');
+	document.getElementById("v2").value = inp;
+}
+		</script>
+	</head>
+	
+	<body>
+	<h1>Dropbox Direct link generator</h1>
+<form onsubmit="getlink(); return false;">
+<label for="lnk">
+Введите ссылку на файл или папку Dropbox / <br>
+/ Enter link to Dropbox file or folder:
+</label><br>
+<input type="url" id="lnk" required pattern="https://www.dropbox.com/.*" placeholder="https://www.dropbox.com/s/igwhkahxwg8m4i7/filename.txt?dl=0">
+<br>
+<button type="submit">Get / Получить</button><br>
+<label>Вариант 1 / Variant 1:</label>
+<input type="text" id="v1" value="" readonly><br>
+<label>Или Вариант 2 / Or Variant 2:</label>
+<input type="text" id="v2" value="" readonly>
+</form>
+	</body>
+</html>
