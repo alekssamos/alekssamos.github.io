@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<title>Dropbox Direct link generator</title>
+		<title>Dropbox and Google Drive Direct link generator</title>
+		<style type="text/css">ul li {list-style-type: none;}</style>
 		<script type="text/javascript">
 function getlink() {
 	var inp = document.getElementById("lnk").value;
@@ -14,12 +15,22 @@ function getlink() {
 	inp = inp.split("?")[0].replace('www.dropbox.', 'dl.dropboxusercontent.');
 	document.getElementById("v2").value = inp;
 }
+function getlink2() {
+	var inp = document.getElementById("lnk2").value;
+	var aTmp =
+/drive\.google\.com\/open\?.*?id=([^&]+)/i.exec(inp) ||
+/drive\.google\.com\/file\/[a-z]\/([^\/]+)\//i.exec(inp);
+	var file_id = aTmp[1];
+	var direct_link = 'https://drive.google.com/uc?export=download&id=' + file_id;
+	document.getElementById("resinp").value = direct_link;
+}
 		</script>
 	</head>
 	
 	<body>
-	<h1>Dropbox Direct link generator</h1>
-<form onsubmit="getlink(); return false;">
+<h1>Direct link generator</h1>
+<form onsubmit="getlink(); return false;" aria-labelledby="title1">
+<h2 id="title1">Dropbox</h2>
 <label for="lnk">
 Введите ссылку на файл или папку Dropbox / <br>
 / Enter link to Dropbox file or folder:
@@ -27,10 +38,32 @@ function getlink() {
 <input type="url" id="lnk" required pattern="https://www.dropbox.com/.*" placeholder="https://www.dropbox.com/s/igwhkahxwg8m4i7/filename.txt?dl=0">
 <br>
 <button type="submit">Get / Получить</button><br>
-<label>Вариант 1 / Variant 1:</label>
+<label for="v1">Вариант 1 / Variant 1:</label>
 <input type="text" id="v1" value="" readonly><br>
-<label>Или Вариант 2 / Or Variant 2:</label>
+<label for="v2">Или Вариант 2 / Or Variant 2:</label>
 <input type="text" id="v2" value="" readonly>
 </form>
+<hr>
+<form onsubmit="getlink2(); return false;" aria-labelledby="title2">
+<h2 id="title2">Google Drive / Гугл Диск</h2>
+<label for="lnk2">
+Введите ссылку на файл или папку Google Drive / <br>
+/ Enter link to Google Drive file or folder:
+</label><br>
+<input type="url" id="lnk2" required pattern="https://drive.google.com/.*" placeholder="https://drive.google.com/...">
+<br>
+<button type="submit">Get / Получить</button><br>
+<label for="resinp">Результат / Result:</label>
+<input type="text" id="resinp" value="" readonly><br>
+</form>
+<h2 id="title3">Полезные ссылки / useful links</h2>
+<div role="region" aria-labelledby="title3">
+<ul>
+<li><a href="https://rocld.com/">Rocld - Сервис создания коротких ссылок на облака</a> (Универсальный, для всех сразу)</li>
+<li><a href="https://getfile.dokpub.com/yandex/">Как получить прямую ссылку на скачивание в сервисе Яндекс.Диск</a> (Облако Cloud.Mail.Ru тоже должно поддерживаться, говорят)</li>
+<li><a href="https://sites.google.com/site/gdocs2direct/">Google Drive Direct Link Generator</a> (eng)</li>
+<li><a href="https://www.votix.ru/p/generator-pryamykh-ssylok-google-disk.html">Генератор прямых ссылок с Гугл Диска | Votix.ru</a> (rus)</li>
+</ul>
+</div>
 	</body>
 </html>
