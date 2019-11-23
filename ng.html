@@ -68,7 +68,7 @@ function genLink(s, p, t){
 	}
 	pnj=pn.join("&").replace("?", "");
 	var link = "nvdaremote://" + s + "?" + p;
-	if(!!t) link = window.location.protocol+"//"+window.location.pathname+"?server="+s+"&"+p;
+	if(!!t) link = window.location.protocol+"//"+window.location.host+window.location.pathname+"?server="+s+"&"+p;
 	if(!!t && pn.length>0 && pnj.length>1) link += "&" + pnj;
 	return link;
 }
@@ -113,7 +113,7 @@ window.onload=function(){
 			if(ps[i].indexOf("key=")==-1 && ps[i].indexOf("mode=")==-1 && ps[i].indexOf("server=")==-1) pn.push(ps[i]);
 		}
 		pnj=pn.join("&").replace("?", "");
-		var lnk = window.location.protocol+"//"+window.location.pathname;
+		var lnk = window.location.protocol+"//"+window.location.host+window.location.pathname;
 		if(pn.length>0 && pnj.length>1) lnk += "?"+pnj;
 		window.location.href = lnk;
 	};
