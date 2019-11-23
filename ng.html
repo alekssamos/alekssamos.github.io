@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Генератор ссылок NVDAREMOTE</title>
+<style>
+// http://pauljadam.com/demos/title-keyboard.html
+// edited
+input[title]:focus:after  { content:attr(title);
+                     background-color: black;
+    color: white;
+    padding:5px;
+    margin-top: 1.3em;
+    position: absolute;
+    max-width: 200px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+	z-index:1;
+}
+</style>
+<script>
+"https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript";
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position="fixed";  //avoid scrolling to bottom
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('Async: Copying to clipboard was successful!');
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+}
+</script>
+<script>
+function di(i) {
+	return document.getElementById(i);
+}
+function euc(u) {
+	return encodeURIComponent(u);
+}
+function genLink(s, p, t){
+	if(!s || !p) return false;
+	s = s.replace(/[\s\/]/);
+	p = p.replace("?", "");
+	var pn=[], ps = window.location.search.replace("?","").split("&");
+	for(var i=0; i<ps.length; i++) {
+		if(ps[i].indexOf("key=")==-1 && ps[i].indexOf("mode=")==-1 && ps[i].indexOf("server=")==-1) pn.push(ps[i]);
+	}
+	pnj=pn.join("&").replace("?", "");
+	var link = "nvdaremote://" + s + "?" + p;
+	if(!!t) link = window.location.protocol+"//"+window.location.pathname+"?server="+s+"&"+p;
+	if(!!t && pn.length>0 && pnj.length>1) link += "&" + pnj;
+	return link;
+}
+window.onload=function(){
+	var pn=[], ps = window.location.search.replace("?","").split("&");
+	for(var i=0; i<ps.length; i++) {
+		if(ps[i].indexOf("server=")==0)  var server = ps[i].split("=")[1];
+		if(ps[i].indexOf("mode=")==0)  var mode = ps[i].split("=")[1];
+		if(ps[i].indexOf("key=")==0)  var key = ps[i].split("=")[1];
+	}
+	if(!!server && !!key && !!mode) window.location.href = genLink(server, "mode="+mode+"&key="+key, false);
+	di("createlink").onclick=function(){
+		var mode;
+		if(di("mode1").checked) mode=di("mode1").value;
+		else if(di("mode2").checked) mode=di("mode2").value;
+		else mode = false;
+		if(!mode) return di("mode1").focus();
+		if(di("server").value.replace(/[^a-z0-9.:-]/i,"").length<3) return di("server").focus();
+		if(di("key").value.replace(/[^a-z0-9.:-_]/i,"").length<2) return di("key").focus();
+		var link = genLink(euc(di("server").value), "mode="+euc(mode)+"&key="+euc(di("key").value), !!di("linktype").checked),
+		rl = di("rlink");
+		rl.value = link;
+		rl.focus();
+	};
+	di("createkey").onclick=function(){
+		di("key").value = Math.floor(Math.random() * 90000000);
+		di("key").focus();
+	};
+	di("copyrlink").onclick=function(){
+		var lnk = di("rlink").value;
+		if(!lnk) return false;
+		copyTextToClipboard( lnk );
+	};
+	di("run").onclick=function(){
+		var lnk = di("rlink").value;
+		if(!lnk) return false;
+		window.location.href = lnk;
+	};
+	di("resetbtn").onclick = function(){
+		var pn=[], ps = window.location.search.replace("?","").split("&");
+		for(var i=0; i<ps.length; i++) {
+			if(ps[i].indexOf("key=")==-1 && ps[i].indexOf("mode=")==-1 && ps[i].indexOf("server=")==-1) pn.push(ps[i]);
+		}
+		pnj=pn.join("&").replace("?", "");
+		var lnk = window.location.protocol+"//"+window.location.pathname;
+		if(pn.length>0 && pnj.length>1) lnk += "?"+pnj;
+		window.location.href = lnk;
+	};
+};
+</script>
+</head>
+
+<body>
+<div class="main">
+<h2>Генератор ссылок NVDAREMOTE</h2>
+<div class="mainform">
+<form onsubmit="return false">
+<div class="field">
+<input type="radio" id="mode1" name="mode" value="master" checked>
+<label for="mode1">Управлять другим компьютером</label>
+</div>
+<div class="field">
+<input type="radio" id="mode2" name="mode" value="slave">
+<label for="mode2">Разрешить управление этим компьютером</label>
+</div>
+<div class="field">
+<label for="server">Адрес сервера:</label>
+<input type="text" id="server" name="server" value="nvdaremote.ru" maxlength="100">
+</div>
+<div class="field">
+<label for="key">Ключ:</label>
+<input type="text" id="key" name="key" value="" maxlength="30">
+<input type="button" id="createkey" name="createkey" value="Создать ключ" accesskey="C">
+</div>
+<div class="field">
+<input type="checkbox" id="linktype" name="linktype" value="Использовать HTTP" checked>
+<input type="button" id="linktypeq" name="linktypeq" value="?" title="Если выбрать, можно отправить ссылку в социальной сети, например, VK, и она будет открываться по нажатию, иначе придется вручную копировать и вставлять в адресную строку">
+</div>
+<div class="btn">
+<button id="createlink" name="createlink">Создать ссылку</button>
+<input type="reset" id="resetbtn" value="Сбросить">
+</div>
+</form>
+</div>
+
+<div class="resultform">
+<form onsubmit="return false">
+<div class="field">
+<label for="rlink">Ссылка:</label>
+<input type="text" id="rlink" name="rlink" value="" readonly onfocus="this.select();">
+<input type="button" id="copyrlink" name="copyrlink" value="Копировать" accesskey="J">
+<input type="button" id="run" name="run" value="Запустить" accesskey="N">
+</div>
+</form>
+</div>
+<h3>Что это</h3>
+<p>
+Чтобы не объяснять человеку, куда зайти, что ввести в адрес и ключ, можно просто создать для него ссылку и ему отправить. При нажатии на неё, дополнение NVDA REMOTE, если уже установлено, сработает и вы сможете подключиться.
+</p>
+</div>
+</body>
+</html>
