@@ -8,7 +8,7 @@
 * http://pauljadam.com/demos/title-keyboard.html
 * edited
 */
-input[title]:focus:after  { content:attr(title);
+input.title:focus:after  { content:attr(title);
                      background-color: black;
     color: white;
     padding:5px;
@@ -146,8 +146,8 @@ window.onload=function(){
 <input type="button" id="createkey" name="createkey" value="Создать ключ" accesskey="C">
 </div>
 <div class="field">
-<input type="checkbox" id="linktype" name="linktype" title="Использовать HTTP" checked>
-<input type="button" id="linktypeq" name="linktypeq" value="?" title="Если выбрать, можно отправить ссылку в социальной сети, например, VK, и она будет открываться по нажатию, иначе придется вручную копировать и вставлять в адресную строку">
+<input type="checkbox" id="linktype" name="linktype" class="title" title="Использовать HTTP" checked>
+<input type="button" id="linktypeq" name="linktypeq" value="?" class="title" title="Если выбрать, можно отправить ссылку в социальной сети, например, VK, и она будет открываться по нажатию, иначе придется вручную копировать и вставлять в адресную строку">
 </div>
 <div class="btn">
 <button id="createlink" name="createlink">Создать ссылку</button>
@@ -161,7 +161,7 @@ window.onload=function(){
 <div class="field">
 <label for="rlink">Ссылка:</label>
 <input type="text" id="rlink" name="rlink" value="" readonly onfocus="this.select();">
-<input type="button" id="copyrlink" name="copyrlink" value="Копировать" accesskey="J" title="Скопировать ссылку на удалённый сеанс">
+<input type="button" id="copyrlink" name="copyrlink" value="Копировать" accesskey="J" class="title" title="Скопировать ссылку на удалённый сеанс">
 <input type="button" id="run" name="run" value="Запустить" accesskey="N">
 </div>
 </form>
