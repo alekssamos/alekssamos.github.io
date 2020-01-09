@@ -81,7 +81,14 @@ window.onload=function(){
 		if(ps[i].indexOf("mode=")==0)  var mode = ps[i].split("=")[1];
 		if(ps[i].indexOf("key=")==0)  var key = ps[i].split("=")[1];
 	}
-	if(!!server && !!key && !!mode) window.location.href = genLink(server, "mode="+mode+"&key="+key, false);
+	if(!!server && !!key && !!mode) {
+		di("key").value = key;
+		di("server").value = server;
+		var r1 = di("mode1"), r2 = di("mode2");
+		if(mode == "master") r1.checked = true;
+		if(mode == "slave") r2.checked = true;
+		window.location.href = genLink(server, "mode="+mode+"&key="+key, false);
+	}
 	di("createlink").onclick=function(){
 		var mode;
 		if(di("mode1").checked) mode=di("mode1").value;
