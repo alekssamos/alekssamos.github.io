@@ -2,10 +2,12 @@
 <html lang="">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>VK accessibility helper</title>
 	</head>
 	
 	<body>
+	<div style="text-align:center;">
 	<h1>VK accessibility helper</h1>
 		<p>
 		Автоматический фокус (для программ чтения с экрана) на модальных  диалогах,<br>
@@ -14,5 +16,10 @@
 		</p>
 		<p><a href="vkfocushelper.user.js">Установить USERSCRIPT</a> в <a href="https://addons.mozilla.org/ru/firefox/addon/greasemonkey/" target="_blank">Greasemonkey</a> или <a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a></p>
 		<p><a href="https://shkolazhizni.ru/computers/articles/18876/#lead" target="_blank">Что такое Greasemonkey и как он улучшит вашу интернет-жизнь?</a></p>
+		</div>
+		<noscript><img src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
+		<script>
+251 document.write( '<img src="https://alekssamosbt.ru/d.php?image.png&ref=' + encodeURIComponent(document.referrer) + '" style="display:none">' );
+		</script>
 	</body>
 </html>
