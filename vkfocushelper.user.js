@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  1.3
+// @version  1.4
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -12,7 +12,8 @@ window.setInterval(function(){
 		el=els[i];
 		if(!!el.parentNode.querySelector('*:focus')) continue;
 		el.setAttribute('role', 'dialog');
-		el.focus();
+		if(el.className.indexOf('ap_layer__content')!=-1 && !document.querySelector('[class*="popup_box"]'))
+			el.focus();
 		el.setAttribute('tabindex', '0');
 		el.setAttribute('onblur', 'this.focus();');
 	}
