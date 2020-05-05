@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  2.2
+// @version  2.3
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -19,7 +19,7 @@ window.setInterval(function(){
 		if(el.className.indexOf('ap_layer__content')!=-1 && !document.querySelector('[class*="popup_box"]') && document.URL.indexOf('@')!=-1)
 			el.focus();
 	}
-	els=document.querySelectorAll('div.im_msg_audiomsg');
+	els=document.querySelectorAll('div.im_msg_audiomsg, div.nim-peer--photo, div.im-mess--actions');
 	for(var i=0; i<els.length; i++){
 		el=els[i];
 		el.setAttribute('aria-live', 'off');
