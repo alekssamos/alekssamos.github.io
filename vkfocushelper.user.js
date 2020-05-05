@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  2.8
+// @version  2.9
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -14,7 +14,7 @@ let aspeak = function(msg) {
 	window.setTimeout(function(){
 		el.innerHTML = msg;
 	}, 10);
-	window.setTimeout(function () { document.body.removeChild(el); }, 2000);
+	window.setTimeout(function () { document.body.removeChild(el); }, 200);
 };
 
 
@@ -25,7 +25,7 @@ document.addEventListener('keyup', function(){
 		if(!cursel||cursel==undefined||cursel==null||cursel==false) return false;
 		curseltext = cursel.innerText || cursel.textContent;
 		aspeak(curseltext);
-	}, 10);
+	}, 30);
 });
 
 window.setInterval(function () {
