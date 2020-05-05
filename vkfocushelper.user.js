@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  2.7
+// @version  2.8
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -25,12 +25,15 @@ document.addEventListener('keyup', function(){
 		if(!cursel||cursel==undefined||cursel==null||cursel==false) return false;
 		curseltext = cursel.innerText || cursel.textContent;
 		aspeak(curseltext);
-	}, 100);
+	}, 10);
 });
 
 window.setInterval(function () {
 	try {
-		document.querySelector('a.im-page--dialogs-settings._im_dialogs_cog_settings').setAttribute('aria-label', 'Settings');
+		let st=document.querySelector('a.im-page--dialogs-settings._im_dialogs_cog_settings');
+		st.setAttribute('aria-label', 'Settings');
+		st.setAttribute('tabindex', '0');
+		st.setAttribute('onclick', st.getAttribute('onmouseover'));
 	} catch (er) {}
 	try {
 		document.querySelector('div#queue_transport_wrap').setAttribute('aria-hidden', 'true');
