@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  2.3
+// @version  2.4
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
