@@ -1,9 +1,32 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  2.6
+// @version  2.7
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
+
+let aspeak = function(msg) {
+	let el = document.createElement('div');
+	el.setAttribute('style', 'position:absolute; width:1px; height:1px; top:-999px; left:-999px;');
+	el.setAttribute('role', 'status');
+	el.setAttribute('aria-hidden', 'false');
+	document.body.appendChild(el);
+	window.setTimeout(function(){
+		el.innerHTML = msg;
+	}, 10);
+	window.setTimeout(function () { document.body.removeChild(el); }, 2000);
+};
+
+
+document.addEventListener('keyup', function(){
+	window.setTimeout(function(){
+		let cursel = document.querySelector('div.wddi_over');
+		let curseltext = '';
+		if(!cursel||cursel==undefined||cursel==null||cursel==false) return false;
+		curseltext = cursel.innerText || cursel.textContent;
+		aspeak(curseltext);
+	}, 100);
+});
 
 window.setInterval(function () {
 	try {
