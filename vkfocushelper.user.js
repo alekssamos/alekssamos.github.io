@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  1.9
+// @version  2.0
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -14,7 +14,7 @@ window.setInterval(function(){
 		el.setAttribute('data-focused', 'true');
 		if(!!el.parentNode.querySelector('*:focus')) continue;
 		el.setAttribute('role', 'dialog');
-		if(el.className.indexOf('ap_layer__content')!=-1 && !document.querySelector('[class*="popup_box"]'))
+		if(el.className.indexOf('ap_layer__content')!=-1 && !document.querySelector('[class*="popup_box"]') && document.URL.indexOf('@')!=-1)
 			el.focus();
 		el.setAttribute('tabindex', '0');
 	}
