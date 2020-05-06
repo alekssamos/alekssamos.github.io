@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  3.8
+// @version  3.9
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -48,6 +48,10 @@ window.setInterval(function () {
 	els = document.querySelectorAll('div#wk_content, div#wl_post, div#pv_box, div.ap_layer_wrap div.ap_layer div.ap_layer__content, div[class*="popup_box"][tabindex="0"], div.article_layer._article_layer');
 	for (var i = 0; i < els.length; i++) {
 		el = els[i];
+		if(window.getComputedStyle(el).display=='none') {
+			el.removeAttribute('data-focused');
+			continue;
+		}
 		prevel=document.querySelector('div[data-focused="true"]');
 		if(!!prevel&&prevel!=el) prevel.setAttribute('data-focused', 'false');
 		el.setAttribute('tabindex', '0');
