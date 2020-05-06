@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  4.1
+// @version  4.2
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -73,4 +73,8 @@ window.setInterval(function () {
 		el = els[i];
 		el.setAttribute('aria-live', 'polite');
 	}
+	els = document.querySelectorAll('div.checkbox');
+	for (var i = 0; i < els.length; i++) {
+		el = els[i];
+		el.setAttribute('tabindex', '0');
 }, 100);
