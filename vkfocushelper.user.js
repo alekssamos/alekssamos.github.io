@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  4.4
+// @version  4.5
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -68,10 +68,10 @@ window.setInterval(function () {
 		el = els[i];
 		el.setAttribute('aria-live', 'off');
 	}
-	els = document.querySelectorAll('div.like_share_about_select');
+	els = document.querySelectorAll('div.like_share_about_select img');
 	for (var i = 0; i < els.length; i++) {
 		el = els[i];
-		el.setAttribute('aria-live', 'polite');
+		el.setAttribute('aria-live', 'off');
 	}
 	els = document.querySelectorAll('div.checkbox');
 	for (var i = 0; i < els.length; i++) {
