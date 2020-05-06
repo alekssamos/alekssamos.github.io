@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  3.5
+// @version  3.6
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -52,7 +52,7 @@ window.setInterval(function () {
 		if(!!prevel&&prevel!=el) prevel.setAttribute('data-focused', 'false');
 		el.setAttribute('tabindex', '0');
 		el.setAttribute('role', 'dialog');
-		if (!el.querySelector('*:focus') && el.getAttribute('data-focused') !== 'true' && el.getAttribute('data-focused') !== 'false')
+		if ((!el.querySelector('*:focus')) || (el.getAttribute('data-focused') !== 'true' && el.getAttribute('data-focused') !== 'false'))
 			el.focus();
 		if(!prevel)
 			el.setAttribute('data-focused', 'true');
