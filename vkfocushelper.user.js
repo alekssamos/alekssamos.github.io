@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  3.0
+// @version  3.1
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -18,7 +18,8 @@ let aspeak = function(msg) {
 };
 
 
-document.addEventListener('keyup', function(){
+document.addEventListener('keyup', function(event){
+	if(event.target.tagName.toLowerCase()!='input') return false;
 	window.setTimeout(function(){
 		let cursel = document.querySelector('div.wddi_over');
 		let curseltext = '';
@@ -46,13 +47,13 @@ window.setInterval(function () {
 	for (var i = 0; i < els.length; i++) {
 		el = els[i];
 		el.setAttribute('tabindex', '0');
+		el.setAttribute('role', 'dialog');
 		if (el.getAttribute('data-focused') !== 'true')
 			el.focus();
 		el.setAttribute('data-focused', 'true');
 		if (!!el.parentNode.querySelector('*:focus'))
 			continue;
-		el.setAttribute('role', 'dialog');
-		if (el.className.indexOf('ap_layer__content') != -1 && !document.querySelector('[class*="popup_box"]') && document.URL.indexOf('@') != -1)
+		if (!el.querySelector('div.audio_pl_snippet2'))
 			el.focus();
 	}
 	els = document.querySelectorAll('div.im_msg_audiomsg, div.nim-peer--photo, div.im-mess--actions');
