@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  3.4
+// @version  3.5
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -45,7 +45,7 @@ window.setInterval(function () {
 	} catch (er) {}
 	var el,
 	prevel,
-	els = document.querySelectorAll('div#wk_content, div#wl_post, div#pv_box, div.ap_layer_wrap div.ap_layer div.ap_layer__content, div[class*="popup_box"][tabindex="0"], div#box_layer_wrap.scroll_fix_wrap.fixed, div.article_layer._article_layer');
+	els = document.querySelectorAll('div#wk_content, div#wl_post, div#pv_box, div.ap_layer_wrap div.ap_layer div.ap_layer__content, div[class*="popup_box"][tabindex="0"], div.article_layer._article_layer');
 	for (var i = 0; i < els.length; i++) {
 		el = els[i];
 		prevel=document.querySelector('div[data-focused="true"]');
