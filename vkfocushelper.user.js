@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  4.2
+// @version  4.3
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -77,4 +77,5 @@ window.setInterval(function () {
 	for (var i = 0; i < els.length; i++) {
 		el = els[i];
 		el.setAttribute('tabindex', '0');
+	}
 }, 100);
