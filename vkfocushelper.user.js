@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  4.0
+// @version  4.1
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -45,7 +45,7 @@ window.setInterval(function () {
 	} catch (er) {}
 	var el,
 	prevel,
-	els = document.querySelectorAll('div#wk_content, div#pv_box, div.ap_layer_wrap div.ap_layer div.ap_layer__content, div[class*="popup_box"][tabindex="0"], div.article_layer._article_layer');
+	els = document.querySelectorAll('div#wk_content, div#pv_box, div.ap_layer_wrap div.ap_layer div.ap_layer__content, div#box_layer_wrap, div.article_layer._article_layer');
 	for (var i = 0; i < els.length; i++) {
 		el = els[i];
 		if(window.getComputedStyle(el).display=='none') {
