@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  4.5
+// @version  4.6
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -36,6 +36,9 @@ window.setInterval(function () {
 		st.setAttribute('aria-label', 'Settings');
 		st.setAttribute('tabindex', '0');
 		st.setAttribute('onclick', st.getAttribute('onmouseover'));
+	} catch (er) {}
+	try {
+		document.querySelector('div#utils textaria').setAttribute('aria-hidden', 'true');
 	} catch (er) {}
 	try {
 		document.querySelector('div#queue_transport_wrap').setAttribute('aria-hidden', 'true');
