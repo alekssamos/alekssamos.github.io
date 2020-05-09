@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -116,7 +115,7 @@ window.onload=function(){
 	};
 	di('createlink').onclick=function(){
 		di('rlink').value=genLink(di('n').value);
-		di('rlink').focus();
+		if(!!di('rlink').value) di('rlink').focus();
 	};
 	di('resetbtn').onclick=function(){
 		di('rlink').value='';
