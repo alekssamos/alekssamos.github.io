@@ -119,7 +119,7 @@ window.onload=function(){
 		window.location.href = lnk;
 	};
 	di('createlink').onclick=function(){
-		if(di('n').value.length > 22 || di('n').value.length < 11 || di('n').value[0]=='8' || di('n').value[0]=='0') {
+		if(di('n').value.length > 22 || (di('n').value.length < 11 && di('n').value.length > 1) || di('n').value[0]=='8' || di('n').value[0]=='0') {
 			alert('Введите номер в международном формате с кодом страны. Не 8, а +7, не 0, а, например, +380');
 			di('n').focus();
 			return false;
