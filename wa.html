@@ -99,8 +99,8 @@ function euc(u) {
 	return encodeURIComponent(u);
 }
 function genLink(n, m){
-	if(!n) n='';
-	if(!m) m='';
+	if(n===undefined||n===null) n='';
+	if(m===undefined||m===null) m='';
 	n=n.replace(/[^0-9]+/g, '');
 	if(!n+m.replace(/[\s]+/g,'')) return '';
 	var umsgpart='';
