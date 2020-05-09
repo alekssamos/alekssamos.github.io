@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="HandheldFriendly" content="True">
+<meta name="description" content="У Whatsapp, также как у Telegram, можно скопировать ссылку, только эта возможность скрытая и мало известная.">
+<meta name="keywords" content="wa.me, WhatsApp ссылка, поделиться, номер, телефон">
+<title>Генератор ссылок Whatsapp поделиться номером телефона WA.ME</title>
+<script>
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        '/wa.html'
+      ]);
+    })
+  );
+});
+self.addEventListener('fetch', function(event) {
+  event.respondWith(caches.match(event.request).then(function(response) {
+    // caches.match() always resolves
+    // but in case of success response will have value
+    if (response !== undefined) {
+      return response;
+    } else {
+      return fetch(event.request).then(function (response) {
+        // response may be used only once
+        // we need to save clone to put one copy in cache
+        // and serve second one
+        let responseClone = response.clone();
+        caches.open('v1').then(function (cache) {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      }).catch(function () {
+        return caches.match('/wa.html');
+      });
+    }
+  }));
+});
+// register service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(function(reg) {
+    if(reg.installing) {
+      console.log('Service worker installing');
+    } else if(reg.waiting) {
+      console.log('Service worker installed');
+    } else if(reg.active) {
+      console.log('Service worker active');
+    }
+  }).catch(function(error) {
+    // registration failed
+    console.log('Registration failed with ' + error);
+  });
+}
+</script>
+<script>
+"https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript";
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position="fixed";  //avoid scrolling to bottom
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('Async: Copying to clipboard was successful!');
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+}
+</script>
+<script>
+function di(i) {
+	return document.getElementById(i);
+}
+function euc(u) {
+	return encodeURIComponent(u);
+}
+function genLink(n){
+	n=n.replace(/[^0-9]+/g, '');
+	if(!n) return '';
+	return 'https://wa.me/'+n.toString();
+}
+window.onload=function(){
+	di("copyrlink").onclick=function(){
+		var lnk = di("rlink").value;
+		if(!lnk) return false;
+		copyTextToClipboard( lnk );
+	};
+	di("run").onclick=function(){
+		var lnk = di("rlink").value;
+		if(!lnk) return false;
+		di('hifr').src = lnk;
+	};
+	di('createlink').onclick=function(){
+		di('rlink').value=genLink(di('n').value);
+		di('rlink').focus();
+	};
+	di('resetbtn').onclick=function(){
+		di('rlink').value='';
+		di('n').value='';
+		di('n').focus();
+	};
+	di('n').focus();
+};
+</script>
+</head>
+
+<body>
+<iframe id="hifr" style="display:none;"></iframe>
+<div class="main">
+<h2>Генератор ссылок Whatsapp</h2>
+<div class="mainform">
+<form onsubmit="return false">
+<div class="field">
+<label for="n">Ваш номер:</label>
+<input type="phone" id="n" name="n" placeholder="+7 (901) 234-56-78">
+</div>
+<div class="btn">
+<button id="createlink" name="createlink">Создать ссылку</button>
+<input type="reset" id="resetbtn" value="Сбросить">
+</div>
+</form>
+</div>
+
+<div class="resultform">
+<form onsubmit="return false">
+<div class="field">
+<label for="rlink">Ссылка:</label>
+<input type="text" id="rlink" name="rlink" value="" readonly onfocus="this.select();">
+<input type="button" id="copyrlink" name="copyrlink" value="Копировать" class="title" title="Скопировать ссылку в буфер обмена">
+<input type="button" id="run" name="run" value="Открыть">
+</div>
+</form>
+</div>
+<h3>Что это</h3>
+<p>
+У Whatsapp, также как у Telegram, можно скопировать ссылку, только эта возможность скрытая и мало известная.<br>
+Она описана в документации: <a target="_blank" href="https://faq.whatsapp.com/en/android/26000030/?lang=ru">WhatsApp FAQ - Как пользоваться функцией «Прямая связь»</a>.<br>
+Укажите свой номер и получите эту ссылку, быстро и просто. Также, одной кнопкой её можно скопировать.
+</p>
+</div>
+
+<!-- stat -->
+<noscript><img alt="" src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
+<script>
+document.write( '<img alt="" src="https://alekssamosbt.ru/d.php?image.png&ref=' + encodeURIComponent(document.referrer) + '" style="display:none">' );
+</script>
+<!-- /stat -->
+</body>
+</html>
