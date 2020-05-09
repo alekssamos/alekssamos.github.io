@@ -98,10 +98,14 @@ function di(i) {
 function euc(u) {
 	return encodeURIComponent(u);
 }
-function genLink(n){
+function genLink(n, m){
+	if(!n) n='';
+	if(!m) m='';
 	n=n.replace(/[^0-9]+/g, '');
-	if(!n) return '';
-	return 'https://wa.me/'+n.toString();
+	if(!n && !m.replace(/[\s]+/g,'')) return '';
+	var umsgpart='';
+	if(!!m.replace(/[\s]+/g,'')) umsgpart='?text='.euc(m);
+	return 'https://wa.me/'+n.toString()+umsgpart.toString();
 }
 window.onload=function(){
 	di("copyrlink").onclick=function(){
@@ -115,7 +119,7 @@ window.onload=function(){
 		window.location.href = lnk;
 	};
 	di('createlink').onclick=function(){
-		di('rlink').value=genLink(di('n').value);
+		di('rlink').value=genLink(di('n').value, di('m').value);
 		if(!!di('rlink').value) di('rlink').focus();
 	};
 	di('resetbtn').onclick=function(){
@@ -134,8 +138,12 @@ window.onload=function(){
 <div class="mainform">
 <form onsubmit="return false">
 <div class="field">
-<label for="n">Ваш номер:</label>
+<label for="n">Номер:</label>
 <input type="tel" id="n" name="n" placeholder="+7 (901) 234-56-78">
+</div>
+<div class="field">
+<label for="m">автоматическое сообщение:</label>
+<input type="text" id="m" name="m" placeholder="Интересует ваша машина" maxlength="1000">
 </div>
 <div class="btn">
 <button id="createlink" name="createlink" class="btn btn-primary">Создать ссылку</button>
@@ -143,7 +151,6 @@ window.onload=function(){
 </div>
 </form>
 </div>
-
 <div class="resultform">
 <form onsubmit="return false">
 <div class="field">
@@ -158,7 +165,8 @@ window.onload=function(){
 <p>
 У Whatsapp, также как у Telegram, можно скопировать ссылку, только эта возможность скрытая и мало известная.<br>
 Она описана в документации: <a target="_blank" href="https://faq.whatsapp.com/en/android/26000030/?lang=ru" class="btn btn-info">WhatsApp FAQ - Как пользоваться функцией «Прямая связь»</a>.<br>
-Укажите свой номер и получите эту ссылку, быстро и просто. Также, одной кнопкой её можно скопировать.
+Укажите свой номер и получите эту ссылку, быстро и просто. Также, одной кнопкой её можно скопировать.<br>
+Ещё можно написать уже заранее заготовленное сообщение. Если указать только текст без номера, у пользователя  откроется список его  контактов, при выборе одного из них - этот текст будет отправлен.
 </p>
 </div>
 
