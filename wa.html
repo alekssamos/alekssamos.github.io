@@ -119,6 +119,11 @@ window.onload=function(){
 		window.location.href = lnk;
 	};
 	di('createlink').onclick=function(){
+		if(di('n').value[0]=='8' || di('n').value[0]=='0') {
+			alert('Введите номер в международном формате с кодом страны. Не 8, а +7, не 0, а, например, +380');
+			di('n').focus();
+			return false;
+		}
 		di('rlink').value=genLink(di('n').value, di('m').value);
 		if(!!di('rlink').value) di('rlink').focus();
 	};
