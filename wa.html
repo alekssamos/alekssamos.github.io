@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="mobile-web-app-capable" content="yes">
@@ -15,7 +16,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       return cache.addAll([
-        '/wa.html'
+        '/wa.html', 'bootstrap.min.css'
       ]);
     })
   );
@@ -111,7 +112,7 @@ window.onload=function(){
 	di("run").onclick=function(){
 		var lnk = di("rlink").value;
 		if(!lnk) return false;
-		di('hifr').src = lnk;
+		window.location.href = lnk;
 	};
 	di('createlink').onclick=function(){
 		di('rlink').value=genLink(di('n').value);
@@ -128,7 +129,6 @@ window.onload=function(){
 </head>
 
 <body>
-<iframe id="hifr" style="display:none;"></iframe>
 <div class="main">
 <h2>Генератор ссылок Whatsapp</h2>
 <div class="mainform">
@@ -138,8 +138,8 @@ window.onload=function(){
 <input type="tel" id="n" name="n" placeholder="+7 (901) 234-56-78">
 </div>
 <div class="btn">
-<button id="createlink" name="createlink">Создать ссылку</button>
-<input type="reset" id="resetbtn" value="Сбросить">
+<button id="createlink" name="createlink" class="btn btn-primary">Создать ссылку</button>
+<input type="reset" id="resetbtn" value="Сбросить" class="btn btn-danger">
 </div>
 </form>
 </div>
@@ -149,15 +149,15 @@ window.onload=function(){
 <div class="field">
 <label for="rlink">Ссылка:</label>
 <input type="text" id="rlink" name="rlink" value="" readonly onfocus="this.select();">
-<input type="button" id="copyrlink" name="copyrlink" value="Копировать" class="title" title="Скопировать ссылку в буфер обмена">
-<input type="button" id="run" name="run" value="Открыть">
+<input type="button" id="copyrlink" name="copyrlink" value="Копировать" class="btn btn-success" title="Скопировать ссылку в буфер обмена">
+<input type="button" id="run" name="run" value="Открыть" class="btn btn-link">
 </div>
 </form>
 </div>
 <h3>Что это</h3>
 <p>
 У Whatsapp, также как у Telegram, можно скопировать ссылку, только эта возможность скрытая и мало известная.<br>
-Она описана в документации: <a target="_blank" href="https://faq.whatsapp.com/en/android/26000030/?lang=ru">WhatsApp FAQ - Как пользоваться функцией «Прямая связь»</a>.<br>
+Она описана в документации: <a target="_blank" href="https://faq.whatsapp.com/en/android/26000030/?lang=ru" class="btn btn-info">WhatsApp FAQ - Как пользоваться функцией «Прямая связь»</a>.<br>
 Укажите свой номер и получите эту ссылку, быстро и просто. Также, одной кнопкой её можно скопировать.
 </p>
 </div>
