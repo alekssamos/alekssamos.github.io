@@ -108,6 +108,17 @@ function genLink(n, m){
 	return 'https://wa.me/'+n.toString()+umsgpart.toString();
 }
 window.onload=function(){
+	di('m').setAttribute('placeholder', di('m').getAttribute('data-placeholder2'));
+	di('n').setAttribute('placeholder', di('n').getAttribute('data-placeholder1'));
+	di("n").onfocus=function(){ di("n").setAttribute('placeholder', di("n").getAttribute('data-placeholder1')) };
+	di("n").onblur=function(){ di("n").removeAttribute('placeholder') };
+	di("m").onfocus=di("n").onchange=function(){
+		if(di("n").value.replace(/[^0-9]+/g,'').length==0){
+			di('m').setAttribute('placeholder', di('m').getAttribute('data-placeholder2'));
+		} else {
+			di('m').setAttribute('placeholder', di('m').getAttribute('data-placeholder1'));
+		}
+	};
 	di("copyrlink").onclick=function(){
 		var lnk = di("rlink").value;
 		if(!lnk) return false;
@@ -145,11 +156,11 @@ window.onload=function(){
 <form onsubmit="return false">
 <div class="field">
 <label for="n">Номер:</label>
-<input type="tel" id="n" name="n" placeholder="+7 (901) 234-56-78">
+<input type="tel" id="n" name="n" data-placeholder1="+7 (901) 234-56-78">
 </div>
 <div class="field">
 <label for="m">автоматическое сообщение:</label>
-<input type="text" id="m" name="m" placeholder="Интересует ваша машина" maxlength="1000">
+<input type="text" id="m" name="m" data-placeholder1="Интересует ваша машина" data-placeholder2="Меня интересует объявление о квартире" maxlength="1000">
 </div>
 <div class="btn">
 <button id="createlink" name="createlink" class="btn btn-primary">Создать ссылку</button>
