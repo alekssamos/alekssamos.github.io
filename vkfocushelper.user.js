@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  5.0
+// @version  5.1
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -76,6 +76,11 @@ window.setInterval(function () {
 		for (var i = 0; i < els.length; i++) {
 			el = els[i];
 			el.setAttribute('aria-live', 'off');
+		}
+		els = document.querySelectorAll('div.checkbox[tabindex=0]');
+		for (var i = 0; i < els.length; i++) {
+			el = els[i];
+			el.setAttribute('role', 'checkbox');
 		}
 		els = document.querySelectorAll('div.checkbox');
 		for (var i = 0; i < els.length; i++) {
