@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  4.9
+// @version  5.0
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -60,7 +60,7 @@ window.setInterval(function () {
 			if(!!prevel&&prevel!=el) prevel.setAttribute('data-focused', 'false');
 			el.setAttribute('tabindex', '0');
 			el.setAttribute('role', 'dialog');
-			if ((!document.querySelector('div[data-focused="false"]')) && ((!el.querySelector('*:focus')) || (el.getAttribute('data-focused') !== 'true' && el.getAttribute('data-focused') !== 'false'))) {
+			if ((!document.querySelector('div[data-focused="false"], iframe[title="recaptcha challenge"]')) && ((!el.querySelector('*:focus')) || (el.getAttribute('data-focused') !== 'true' && el.getAttribute('data-focused') !== 'false'))) {
 				el.setAttribute('data-focused', 'true');
 				el.focus();
 	}
