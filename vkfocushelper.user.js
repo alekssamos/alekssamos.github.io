@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  5.1
+// @version  5.2
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -77,15 +77,14 @@ window.setInterval(function () {
 			el = els[i];
 			el.setAttribute('aria-live', 'off');
 		}
-		els = document.querySelectorAll('div.checkbox[tabindex=0]');
-		for (var i = 0; i < els.length; i++) {
-			el = els[i];
-			el.setAttribute('role', 'checkbox');
-		}
 		els = document.querySelectorAll('div.checkbox');
 		for (var i = 0; i < els.length; i++) {
 			el = els[i];
+			if(el.getAttribute('role')!='checkbox') el.setAttribute('data-mycheck', 'y');
 			el.setAttribute('tabindex', '0');
+			if(el.getAttribute('data-mycheck')!='y') break;
+			el.setAttribute('role', 'checkbox');
+			el.setAttribute('aria-checked', el.classList.contains('on')?'true':'false');
 		}
 		}catch(er){}
 }, 100);
