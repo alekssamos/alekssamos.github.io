@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  5.4
+// @version  5.5
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -77,7 +77,7 @@ window.setInterval(function () {
 			el = els[i];
 			el.setAttribute('aria-live', 'off');
 		}
-		els = document.querySelectorAll('div.ui_toggler');
+		els = document.querySelectorAll('div.ui_toggler, span.ChatSettingsMembersEdit__actions');
 		for (var i = 0; i < els.length; i++) {
 			el = els[i];
 			el.setAttribute('role', 'button');
