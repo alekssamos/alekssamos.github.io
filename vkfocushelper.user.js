@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  5.5
+// @version  5.6
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -49,7 +49,7 @@ window.setInterval(function () {
 	try{
 		var el,
 		prevel,
-		els = document.querySelectorAll('div#wk_content, div#pv_box, div.ap_layer_wrap, div#box_layer_wrap, div.article_layer._article_layer');
+		els = document.querySelectorAll('div#wk_content, div#pv_box, div.ap_layer_wrap, div#box_layer_wrap, div.article_layer._article_layer, div#mv_layer_wrap');
 		for (var i = 0; i < els.length; i++) {
 			el = els[i];
 			if(window.getComputedStyle(el).display=='none') {
