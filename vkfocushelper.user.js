@@ -1,6 +1,8 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  5.6
+// @version  5.8
+// @noframes
+// @run-at document-body
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
@@ -30,7 +32,7 @@ document.addEventListener('keyup', function(event){
 	return true;
 });
 
-window.setInterval(function () {
+let _mainscr = function () {
 	try {
 		let st=document.querySelector('a.im-page--dialogs-settings._im_dialogs_cog_settings');
 		st.setAttribute('aria-label', 'Settings');
@@ -94,4 +96,12 @@ window.setInterval(function () {
 			el.setAttribute('aria-checked', el.classList.contains('on')?'true':'false');
 		}
 		}catch(er){}
-}, 100);
+};
+
+let mainscr = function () {
+	window.setTimeout(_mainscr, 100);
+};
+
+document.addEventListener('click', mainscr);
+document.addEventListener('mousedown', mainscr);
+window.setTimeout(mainscr, 200);
