@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  6.2
+// @version  6.3
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -33,7 +33,6 @@
 	});
 
 	let _mainscr = function () {
-		console.log("runmain!")
 		try {
 			let st=document.querySelector('a.im-page--dialogs-settings._im_dialogs_cog_settings');
 			st.setAttribute('aria-label', 'Settings');
