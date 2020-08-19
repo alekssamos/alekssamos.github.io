@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  6.1
+// @version  6.2
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -105,5 +105,7 @@
 
 	document.addEventListener('click', mainscr);
 	document.addEventListener('mousedown', mainscr);
+	document.addEventListener('domready', mainscr);
+	window.addEventListener('load', mainscr);
 	window.setTimeout(mainscr, 200);
 })();
