@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  6.3
+// @version  6.4
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -104,7 +104,11 @@
 
 	document.addEventListener('click', mainscr);
 	document.addEventListener('mousedown', mainscr);
-	document.addEventListener('domready', mainscr);
+	document.addEventListener('keypress', function(event){
+		if(event.keyCode < 44) {
+			mainscr();
+		}
+	});
 	window.addEventListener('load', mainscr);
 	window.setTimeout(mainscr, 200);
 })();
