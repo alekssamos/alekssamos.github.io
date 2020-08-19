@@ -1,8 +1,7 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  6.0
+// @version  6.1
 // @noframes
-// @run-at document-body
 // @grant    none
 // @include     https://vk.com/*
 // ==/UserScript==
