@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  6.4
+// @version  6.5
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -104,7 +104,8 @@
 
 	document.addEventListener('click', mainscr);
 	document.addEventListener('mousedown', mainscr);
-	document.addEventListener('keypress', function(event){
+	document.addEventListener('scroll', mainscr);
+	document.body.addEventListener('keyup', function(event){
 		if(event.keyCode < 44) {
 			mainscr();
 		}
