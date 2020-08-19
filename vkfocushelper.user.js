@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  6.7
+// @version  6.9
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -99,6 +99,7 @@
 	};
 
 	let mainscr = function () {
+		window.setTimeout(_mainscr, 10);
 		window.setTimeout(_mainscr, 300);
 	};
 
