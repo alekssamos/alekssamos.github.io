@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  5.8
+// @version  5.9
 // @noframes
 // @run-at document-body
 // @grant    none
@@ -33,6 +33,7 @@ document.addEventListener('keyup', function(event){
 });
 
 let _mainscr = function () {
+	console.log("runmain!")
 	try {
 		let st=document.querySelector('a.im-page--dialogs-settings._im_dialogs_cog_settings');
 		st.setAttribute('aria-label', 'Settings');
