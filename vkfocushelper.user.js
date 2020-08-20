@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  7.0
+// @version  7.1
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -115,4 +115,19 @@
 	});
 	window.addEventListener('load', mainscr);
 	mainscr();
+
+var pageURLCheckTimer   = setInterval (
+	function () {
+		if (   this.lastPathStr  !== location.pathname
+			|| this.lastQueryStr !== location.search
+			|| (fireOnHashChangesToo && this.lastHashStr !== location.hash)
+		) {
+			this.lastPathStr  = location.pathname;
+			this.lastQueryStr = location.search;
+			this.lastHashStr  = location.hash;
+			_mainscr();
+		}
+	}
+	, 11
+);
 })();
