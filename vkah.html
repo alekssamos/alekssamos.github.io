@@ -4,6 +4,18 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>VK accessibility helper</title>
+		<script>
+function dbr() {
+	let url = "";
+	if(navigator.userAgent.indexOf("Firefox")!=-1) {
+		url = "https://addons.mozilla.org/ru-RU/firefox/addon/tampermonkey/";
+	} else {
+		url = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=ru";
+	}
+	let tdl = document.getElementById("tdl");
+	tdl.href = url;
+}
+		</script>
 	</head>
 	
 	<body>
@@ -24,8 +36,19 @@
 		выбирайте стрелками диалог, беседу  или сообщество,<br>
 		теперь  будет проговариваться, что  выбрано.
 		</p>
-		<p><a href="vkfocushelper.user.js">Установить USERSCRIPT</a> в <a href="https://addons.mozilla.org/ru/firefox/addon/greasemonkey/" target="_blank">Greasemonkey</a> или <a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a></p>
-		<p><a href="https://shkolazhizni.ru/computers/articles/18876/#lead" target="_blank">Что такое Greasemonkey<br> и как он улучшит вашу интернет-жизнь?</a></p>
+		<ol>
+			<li><a href="" target="_blank" id="tdl" onclick="dbr();" oncontextmenu="dbr();">Сначала установить расширение Tampermonkey</a></li>
+			<li><a href="vkfocushelper.user.js">Затем установить в него этот USERSCRIPT</a></li>
+		</ol>
+		<blockquote>
+		* По моим наблюдениям, через  Greasemonkey почему-то скрипт работает хуже, а Tampermonkey показал себя с лучшей стороны.
+		</blockquote>
+		<p>
+		Если Вы хотите получить больше информации, что такое пользовательские скрипты, то читайте статью:<br>
+		<a href="https://shkolazhizni.ru/computers/articles/18876/#lead" target="_blank">Что такое Greasemonkey<br> и как он улучшит вашу интернет-жизнь?</a></p>
+		<p>
+			Ещё рекомендую: <a target="_blank" href="https://github.com/alekssamos/accessibility-by-force#accessibility-by-force-3">WhatsappWebWithMoreAccessibility</a>
+		</p>
 		</div>
 		<noscript><img src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
 		<script>
