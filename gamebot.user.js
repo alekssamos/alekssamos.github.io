@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         gamebbot
 // @namespace    http://tampermonkey.net/
-// @homepage    https://alekssamos.github.io/gamebbot.html?1.1
-// @version      1.1
+// @homepage    https://alekssamos.github.io/gamebbot.html?1.2
+// @version      1.2
 // @description  бот для игры
 // @author       alekssamos
 // @match        https://xospital.mobi/*
@@ -68,7 +68,7 @@
         }
     }
     function autoPark() {
-        if(!_golink("/AutoPark/TipWayAll") && !_golink("/AutoPark/ThreatAll") && !_golink("/AutoFuel/RefillAll") && !_golink("/AutoParkDestination/SendAll") && !_golink("/AutoPark/ExamineAll")) {
+        if(!_golink("/AutoPark/TipWayAll") && !_golink("/AutoPark/ThreatAll") && !_golink("/AutoFuel/RefillAll") && !_golink("/AutoParkDestination/SendAll?onEvent=true") && !_golink("/AutoPark/ExamineAll")) {
             golink("/VetClinic");
         }
     }
@@ -78,7 +78,7 @@
         }
     }
     function quests() {
-        if(!_golink("/Quests/Begin") && !_golink("/Quests/Study")) {
+        if(!_golink("/Quests/Begin") && !_golink("/Quests/Study") && !_golink("/Quests/SaveInjured")) {
             golink("/Rooms");
         }
     }
