@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         gamebbot
 // @namespace    http://tampermonkey.net/
-// @homepage    https://alekssamos.github.io/gamebbot.html
-// @version      1.0
+// @homepage    https://alekssamos.github.io/gamebbot.html?1.1
+// @version      1.1
 // @description  бот для игры
 // @author       alekssamos
 // @match        https://xospital.mobi/*
@@ -74,6 +74,11 @@
     }
     function vetClinic() {
         if(!_golink("/VetClinic/DiagnoseAll") && !_golink("/VetClinic/TreatmentAll") && !_golink("/VetClinic/GetPetsAll")) {
+            golink("/Quests");
+        }
+    }
+    function quests() {
+        if(!_golink("/Quests/Begin") && !_golink("/Quests/Study")) {
             golink("/Rooms");
         }
     }
@@ -86,6 +91,7 @@
         if(u.indexOf("Pharmacy")!=-1) { pharmacy(); }
         if(u.indexOf("AutoPark")!=-1) { autoPark(); }
         if(u.indexOf("VetClinic")!=-1) { vetClinic(); }
+        if(u.indexOf("/Quests")!=-1) { quests(); }
     }
     window.setTimeout(main, pausetime);
 })();
