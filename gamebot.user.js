@@ -2,8 +2,8 @@
 // @name         gamebbot
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/gamebbot.html?1.2
-// @version      1.3
-@description  бот для игры
+// @version      1.4
+// @description  бот для игры xospital.mobi
 // @author       alekssamos
 // @match        https://xospital.mobi/*
 // @run-at document-start
@@ -23,7 +23,7 @@
         }
         document.getElementById("startstopbtn").innerHTML=botstatus;
     }
-    var ulfirst = document.getElementsByTagName("ul")[0];
+    var ulfirst = document.getElementsByTagName("div")[0];
     var ulfirstparent = ulfirst.parentNode;
     var btndiv = document.createElement("div");
     btndiv.id="botdiv1";
