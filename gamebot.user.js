@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         gamebbot
 // @namespace    http://tampermonkey.net/
-// @homepage    https://alekssamos.github.io/gamebbot.html?1.2
-// @version      1.5
+// @homepage    https://alekssamos.github.io/gamebbot.html?1.6
+// @version      1.6
 // @description  бот для игры xospital.mobi
 // @author       alekssamos
 // @match        https://xospital.mobi/*
@@ -59,7 +59,7 @@
         window.setTimeout(_golink, timedelay, u);
     }
     function rooms() {
-        if(!_golink("/Rooms/ExamineAll") && !_golink("/Rooms/GetPotionAll") && !_golink("/Rooms/DischargeAll") && !_golink("/Rooms/ClearAll") && !_golink("/Reception/TreatAll?treatType=Epidemic")) {
+        if(!_golink("/Rooms/ExamineAll") && !_golink("/Rooms/GetPotionAll") && !_golink("/Rooms/DischargeAll") && !_golink("/Rooms/ClearAll") && !_golink("/Reception/TreatAll?treatType=Epidemic") && !_golink("/Rooms/GetVitaminsToAll")) {
             golink("/Pharmacy");
         }
     }
