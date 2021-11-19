@@ -2,7 +2,7 @@
 // @name         gamebbot
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/gamebbot.html?1.6
-// @version      1.6
+// @version      1.7
 // @description  бот для игры xospital.mobi
 // @author       alekssamos
 // @match        https://xospital.mobi/*
@@ -64,7 +64,7 @@
         }
     }
     function pharmacy() {
-        if(!_golink("/Pharmacy/CheerupAll")) {
+        if(!_golink("/Pharmacy/CheerupAll") && !_golink("/Pharmacy/FoodAll")) {
             golink("/AutoPark");
         }
     }
