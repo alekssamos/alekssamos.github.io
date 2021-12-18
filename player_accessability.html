@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>player_accessability</title>
+		<script>
+function dbr() {
+	let url = "";
+	if(navigator.userAgent.indexOf("Firefox")!=-1) {
+		url = "https://addons.mozilla.org/ru-RU/firefox/addon/tampermonkey/";
+	} else {
+		url = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=ru";
+	}
+	let tdl = document.getElementById("tdl");
+	tdl.href = url;
+}
+		</script>
+	</head>
+	
+	<body>
+	<div style="text-align:center;">
+	<h1>gamebot</h1>
+		<p>
+        После установки появится кнопка Play.
+		</p>
+		<ol>
+			<li><a href="" target="_blank" id="tdl" onclick="dbr();" oncontextmenu="dbr();">Сначала установить расширение Tampermonkey</a></li>
+			<li><a href="player_accessability.user.js">Затем установить в него этот USERSCRIPT</a></li>
+		</ol>
+		<blockquote>
+		* По моим наблюдениям, через  Greasemonkey почему-то скрипт работает хуже,<br>
+		а Tampermonkey показал себя с лучшей стороны.
+		</blockquote>
+		<p>
+		Если Вы хотите получить больше информации, что такое пользовательские скрипты, то читайте статью:<br>
+		<a href="https://shkolazhizni.ru/computers/articles/18876/#lead" target="_blank">Что такое Greasemonkey<br> и как он улучшит вашу интернет-жизнь?</a></p>
+		</div>
+		<footer>&copy; 2021 - Alex33</footer>
+		<noscript><img src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
+		<script>
+document.write( '<img src="https://alekssamosbt.ru/d.php?image.png&ref=' + encodeURIComponent(document.referrer) + '" style="display:none">' );
+		</script>
+	</body>
+</html>
