@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>enable inaccessable dialogs</title>
+		<title>Boo.world accessibility elements</title>
 		<script>
 function dbr() {
 	let url = "";
@@ -20,16 +20,18 @@ function dbr() {
 	
 	<body>
 	<div style="text-align:center;">
-	<h1>enable inaccessable dialogs</h1>
+	<h1>Boo.world accessibility elements</h1>
 		<p>
-		На некоторых веб сайтах есть диалоги. Иногда они бывают полностью недоступны.<br>
-		Дело в одном единственном атрибуте, это aria-hidden,<br>
-		который не правильно там используется, его нужно просто удалить и всё.<br>
-		Для его удаления и создан этот скрипт.
+		Некоторые элементы просто div, они  не содержат никакой подписи, даже пробела, но это кнопки, которые можно нажать.<br>
+		Соответственно, этот скрипт делает эти кнопки нажимаемыми и фокусируемыми для программ экранного доступа.
 		</p>
+		<h4>На телефон</h4>
+		<p><a rel="sidebar" href="javascript:s%3Ddocument.createElement('script')%3Bs.src%3D'https%3A%2F%2Falekssamos.github.io%2Fboo.user.js'%3Bdocument.body.appendChild(s)%3Bvoid(0)%3B">Boo accessibility</a><br>
+		(Добавьте в закладки, дальше после входа на Boo.world активируете скрипт через закладки.</p>
+		<h4>На компьютер</h4>
 		<ol>
 			<li><a href="" target="_blank" id="tdl" onclick="dbr();" oncontextmenu="dbr();">Сначала установить расширение Tampermonkey</a></li>
-			<li><a href="enableinaccessabledialogs.user.js?0.7.user.js">Затем установить в него этот USERSCRIPT</a></li>
+			<li><a href="boo.user.js">Затем установить в него этот USERSCRIPT</a></li>
 		</ol>
 		<blockquote>
 		* По моим наблюдениям, через  Greasemonkey почему-то скрипт работает хуже,<br>
@@ -39,10 +41,10 @@ function dbr() {
 		Если Вы хотите получить больше информации, что такое пользовательские скрипты, то читайте статью:<br>
 		<a href="https://shkolazhizni.ru/computers/articles/18876/#lead" target="_blank">Что такое Greasemonkey<br> и как он улучшит вашу интернет-жизнь?</a></p>
 		<p>
-			Ещё рекомендую: <a target="_blank" href="https://github.com/alekssamos/accessibility-by-force#accessibility-by-force-3">WhatsappWebWithMoreAccessibility</a>, <a href="vkah.html">VK accessibility helper</a>, <a href="boo.html">Boo accessibility</a>
+			Ещё рекомендую: <a target="_blank" href="https://github.com/alekssamos/accessibility-by-force#accessibility-by-force-3">WhatsappWebWithMoreAccessibility</a>, <a href="vkah.html">VK accessibility helper</a>, <a href="eid.html">enable inaccessable dialogs</a>
 		</p>
 		</div>
-		<footer>&copy; 2021 - Alex33</footer>
+		<footer>&copy; 2023 - Alex33</footer>
 		<noscript><img src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
 		<script>
 document.write( '<img src="https://alekssamosbt.ru/d.php?image.png&ref=' + encodeURIComponent(document.referrer) + '" style="display:none">' );
