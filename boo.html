@@ -15,6 +15,9 @@ function dbr() {
 	let tdl = document.getElementById("tdl");
 	tdl.href = url;
 }
+window.onload=function(){
+	document.getElementById("bookmarkletcode").innerHTML=document.getElementById("bookmarklet").href;
+};
 		</script>
 	</head>
 	
@@ -26,8 +29,9 @@ function dbr() {
 		Соответственно, этот скрипт делает эти кнопки нажимаемыми и фокусируемыми для программ экранного доступа.
 		</p>
 		<h4>На телефон</h4>
-		<p><a rel="sidebar" href="javascript:s%3Ddocument.createElement('script')%3Bs.src%3D'https%3A%2F%2Falekssamos.github.io%2Fboo.user.js'%3Bdocument.body.appendChild(s)%3Bvoid(0)%3B">Boo accessibility</a><br>
-		(Добавьте в закладки, дальше после входа на Boo.world активируете скрипт через закладки.</p>
+		<p><a rel="sidebar" href="javascript:s%3Ddocument.createElement('script')%3Bs.src%3D'https%3A%2F%2Falekssamos.github.io%2Fboo.user.js'%3Bdocument.body.appendChild(s)%3Bvoid(0)%3B" onclick="if(document.all)window.external.addFavorite(this.href);" id="bookmarklet">Boo accessibility</a><br>
+		<code id="bookmarkletcode"></code><br>
+		Добавьте в закладки, дальше после входа на Boo.world активируете скрипт через закладки.</p>
 		<h4>На компьютер</h4>
 		<ol>
 			<li><a href="" target="_blank" id="tdl" onclick="dbr();" oncontextmenu="dbr();">Сначала установить расширение Tampermonkey</a></li>
