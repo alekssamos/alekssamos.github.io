@@ -2,7 +2,7 @@
 // @name         boo.world clickable elements accessibility
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/boo.html
-// @version      0.11
+// @version      0.12
 // @description  There is an empty label in the pressed elements and even the left-right arrows on the computer cannot be focused and pressed, and even more so on smartphones. And also makes the states and roles of elements available.
 // @author       alekssamos
 // @include        https://boo.world/*
