@@ -2,7 +2,7 @@
 // @name         boo.world clickable elements accessibility
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/boo.html
-// @version      0.6
+// @version      0.7
 // @description  There is an empty label in the pressed elements and even the left-right arrows on the computer cannot be focused and pressed, and even more so on smartphones
 // @author       alekssamos
 // @include        https://boo.world/*
@@ -21,6 +21,9 @@ window.setInterval(()=>{
 				setAttribute("aria-live", "off");
 				setAttribute("role", "button");
 				setAttribute("tabindex", "0");
+				if(getAttribute("class").indexOf("highlighted")!=-1) {
+					setAttribute("aria-pressed", "true");
+				}
 				if((innerText?innerText:textContent).trim() == "" && getAttribute("onclick").length > 8) {
 					setAttribute("aria-label", getAttribute("onclick"));
 				}
