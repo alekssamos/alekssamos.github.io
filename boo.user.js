@@ -10,14 +10,14 @@
 // @grant        none
 // ==/UserScript==
 
-function passingElements() {
+var passingElements = function() {
 	let msgl = document.querySelector("div#messagesList");
 	if(msgl && msgl.getAttribute('aria-live') != 'polite') {
 		msgl.setAttribute('aria-live', 'polite');
 	}
 	document.querySelectorAll(".clickable, #moreOptionsIcons").forEach(elem=>{
-		if(classList.contains("bubble") && classList.contains("clickable")) {
-			setAttribute("aria-pressed", classList.contains("interest-highlighted")?"true":"false");
+		if(elem.classList.contains("bubble") && elem.classList.contains("clickable")) {
+			elem.setAttribute("aria-pressed", elem.classList.contains("interest-highlighted")?"true":"false");
 		}
 		if(elem.getAttribute("role") != "button") {
 			with(elem) {
@@ -30,10 +30,11 @@ function passingElements() {
 			}
 		}
 	});
-}
+};
 
 window.setInterval(passingElements, 500);
 
 window.addEventListener("load", (event)=>{
 	document.body.addEventListener("click", passingElements);
+	passingElements();
 });
