@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     VK accessibility helper
-// @version  7.1
+// @version  7.2
 // @noframes
 // @grant    none
 // @include     https://vk.com/*
@@ -34,12 +34,6 @@
 
 	let _mainscr = function () {
 		try {
-			let st=document.querySelector('a.im-page--dialogs-settings._im_dialogs_cog_settings');
-			st.setAttribute('aria-label', 'Settings');
-			st.setAttribute('tabindex', '0');
-			st.setAttribute('onclick', st.getAttribute('onmouseover'));
-		} catch (er) {}
-		try {
 			document.querySelector('div#utils').setAttribute('aria-hidden', 'true');
 		} catch (er) {}
 		try {
@@ -51,7 +45,7 @@
 		try{
 			var el,
 			prevel,
-			els = document.querySelectorAll('div#wk_content, div#pv_box, div.ap_layer_wrap, div#box_layer_wrap, div.article_layer._article_layer, div#mv_layer_wrap');
+			els = document.querySelectorAll('div.article_layer._article_layer');
 			for (var i = 0; i < els.length; i++) {
 				el = els[i];
 				if(window.getComputedStyle(el).display=='none') {
@@ -106,7 +100,6 @@
 	};
 
 	document.addEventListener('click', mainscr);
-	document.addEventListener('mousedown', mainscr);
 	document.addEventListener('scroll', mainscr);
 	document.body.addEventListener('keyup', function(event){
 		if(event.keyCode < 44) {
@@ -116,7 +109,7 @@
 	window.addEventListener('load', mainscr);
 	mainscr();
 
-var pageURLCheckTimer   = setInterval (
+/* var pageURLCheckTimer   = setInterval (
 	function () {
 		if (   this.lastPathStr  !== location.pathname
 			|| this.lastQueryStr !== location.search
@@ -129,5 +122,5 @@ var pageURLCheckTimer   = setInterval (
 		}
 	}
 	, 11
-);
+); */
 })();
