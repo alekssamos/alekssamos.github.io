@@ -2,13 +2,15 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.12
+// @version      0.13
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
-// @include        https://*.*
-// @include        https://*.*.*
-// @include        http://*.*
-// @include        http://*.*.*
+// @include        https://*.*/*
+// @include        https://*.*.*/*
+// @include        https://*.*.*.*/*
+// @include        http://*.*/*
+// @include        http://*.*.*/*
+// @include        http://*.*.*.*/*
 // @run-at document-start
 // @grant        none
 // ==/UserScript==
@@ -34,7 +36,7 @@
             el.setAttribute('tabindex', '0');
             el.setAttribute('aria-checked', inp.checked?'true':'false');
         });
-        document.querySelectorAll("Button.checked").forEach(function(btn){
+        document.querySelectorAll("button.checked").forEach(function(btn){
             let _attr = btn.getAttribute('aria-pressed');
             let _pb = btn.parentNode.parentNode;
             if(_attr==='true' || _attr==='false') return true;
