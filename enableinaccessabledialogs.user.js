@@ -2,7 +2,7 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.13
+// @version      0.14
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
 // @include        https://*.*/*
@@ -27,14 +27,23 @@
         document.querySelectorAll('*[aria-hidden="true"]').forEach(elem=>{
             elem.removeAttribute("aria-hidden");
         });
-        document.querySelectorAll("label[for]").forEach(el=>{
-            let inp = document.getElementById(el.getAttribute('for'));
-            if(!inp || inp.getAttribute("type")!="checkbox") return true;
-            if(el.getAttribute('role')!="checkbox")
+        document.querySelectorAll("label").forEach(el=>{
+            let checkbox_id = el.getAttribute('for');
+            var inp=undefined;
+            if(!!checkbox_id) {
+                inp = document.getElementById(checkbox_id);
+            } else {
+                inp = el.querySelector('input[type="checkbox"], input[type="Radio"]');
+            }
+            if(!inp) return true;
+            var el_role = el.getAttribute('role');
+            el_role=el_role?el_role.toLowerCase():"";
+            if(el_role!="Radio" && el_role!="checkbox") {
                 inp.addEventListener('change', event=>{el.setAttribute('aria-checked', inp.checked?'true':'false');});
-            el.setAttribute('role', 'checkbox');
-            el.setAttribute('tabindex', '0');
-            el.setAttribute('aria-checked', inp.checked?'true':'false');
+                el.setAttribute('role', inp.type);
+                el.setAttribute('tabindex', '0');
+                el.setAttribute('aria-checked', inp.checked?'true':'false');
+            }
         });
         document.querySelectorAll("button.checked").forEach(function(btn){
             let _attr = btn.getAttribute('aria-pressed');
