@@ -2,7 +2,7 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.14
+// @version      0.15
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
 // @include        https://*.*/*
@@ -40,11 +40,12 @@
             el_role=el_role?el_role.toLowerCase():"";
             if(el_role!="Radio" && el_role!="checkbox") {
                 inp.addEventListener('change', event=>{el.setAttribute('aria-checked', inp.checked?'true':'false');});
+            }
+            if(inp.type=="Radio" || inp.type=="checkbox") {
                 el.setAttribute('role', inp.type);
                 el.setAttribute('tabindex', '0');
                 el.setAttribute('aria-checked', inp.checked?'true':'false');
-            }
-        });
+            });
         document.querySelectorAll("button.checked").forEach(function(btn){
             let _attr = btn.getAttribute('aria-pressed');
             let _pb = btn.parentNode.parentNode;
