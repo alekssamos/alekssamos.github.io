@@ -2,7 +2,7 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.16
+// @version      0.17
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
 // @include        https://*.*/*
@@ -32,6 +32,12 @@
             var inp=undefined;
             if(!!checkbox_id) {
                 inp = document.getElementById(checkbox_id);
+                if(!inp) {
+                    let _tmp_inp = el.previousElementSibling;
+                    if(_tmp_inp.tagName.toLowerCase()=="input" && _tmp_inp.id=="") {
+                        inp = _tmp_inp;
+                    }
+                }
             } else {
                 inp = el.querySelector('input[type="checkbox"], input[type="Radio"]');
             }
