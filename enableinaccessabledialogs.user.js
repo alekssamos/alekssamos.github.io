@@ -2,7 +2,7 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.18
+// @version      0.19
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
 // @include        https://*.*/*
@@ -27,6 +27,46 @@
         document.querySelectorAll('*[aria-hidden="true"]').forEach(elem=>{
             elem.removeAttribute("aria-hidden");
         });
+        
+        
+        
+/*<vdsina>*/
+function set_menu_clickable_from_keyboard(elem){
+	elem.setAttribute("tabindex", "0");
+	elem.setAttribute("role", "menuitemradio");
+	if(elem.parentNode.getAttribute("role")!="menu") {
+		elem.parentNode.setAttribute("role", "menu");
+		elem.parentNode.setAttribute("tabindex", "-1");
+	}
+}
+document.querySelectorAll('div[class*="disabled"]').forEach(elem=>{
+	with(elem){
+		let d = getAttribute("aria-disabled");
+		if(d!="true" && d!="false") {
+			setAttribute("aria-disabled", "true");
+			set_menu_clickable_from_keyboard(elem);
+			addEventListener("onclick", event=>{
+				let has_disabled=(getAttribute("class").indexOf("disabled")!=-1)?"true":"false";
+				setAttribute("aria-disabled", has_disabled);
+			});
+		}
+	}
+});
+document.querySelectorAll('div[class*="selected"]').forEach(elem=>{
+	with(elem){
+		let d = getAttribute("aria-checked");
+		if(d!="true" && d!="false") {
+			setAttribute("aria-checked", "true");
+			set_menu_clickable_from_keyboard(elem);
+			addEventListener("onclick", event=>{
+				let has_selected=(getAttribute("class").indexOf("selected")!=-1)?"true":"false";
+				setAttribute("aria-checked", has_selected);
+			});
+		}
+	}
+});
+/*</vdsina>*/
+
         document.querySelectorAll("label").forEach(el=>{
             let checkbox_id = el.getAttribute('for');
             var inp=undefined;
