@@ -2,7 +2,7 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.19
+// @version      0.20
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
 // @include        https://*.*/*
@@ -14,6 +14,10 @@
 // @run-at document-start
 // @grant        none
 // ==/UserScript==
+
+/*
+Я решил из этого скрипта сделать универсальный код, который охватывает как можно больше случаев, как можно больше сайтов.
+*/
 
 (function() {
     'use strict';
@@ -31,6 +35,11 @@
         
         
 /*<vdsina>*/
+        document.querySelectorAll('span.btn').forEach(elem=>{
+            elem.setAttribute("role", "button");
+            elem.setAttribute("tabindex", "0");
+        });
+        
 function set_menu_clickable_from_keyboard(elem){
 	elem.setAttribute("tabindex", "0");
 	elem.setAttribute("role", "menuitemradio");
