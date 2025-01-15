@@ -2,7 +2,7 @@
 // @name         fix aria hidden for display block dialog
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/eid.html
-// @version      0.21
+// @version      0.22
 // @description  aria-hidden true, enable this dialogs
 // @author       alekssamos
 // @include        https://*.*/*
@@ -20,7 +20,7 @@
 */
 
 (function() {
-    'use strict';
+    /* 'use strict'; */
 
     window.setInterval(function(){
         if (document.domain == "vk.com") {
