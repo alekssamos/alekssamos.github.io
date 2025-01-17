@@ -1,16 +1,16 @@
 // ==UserScript==
-// @name         fix aria hidden for display block dialog
+// @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
-// @homepage    https://alekssamos.github.io/eid.html
-// @version      0.22
-// @description  aria-hidden true, enable this dialogs
+// @homepage    https://alekssamos.github.io/a11y.html
+// @version      0.1
+// @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
-// @include        https://*.*/*
-// @include        https://*.*.*/*
-// @include        https://*.*.*.*/*
-// @include        http://*.*/*
-// @include        http://*.*.*/*
-// @include        http://*.*.*.*/*
+// @include        *://*vdsina*/*
+// @include        *://*funpay*/*
+// @include        *://*keen*/*
+// @include        *://*192.168*/*
+// @include        *://*10.*/*
+// @include        *://*172.*/*
 // @run-at document-start
 // @grant        none
 // ==/UserScript==
@@ -20,21 +20,8 @@
 */
 
 (function() {
-    /* 'use strict'; */
-
     window.setInterval(function(){
-        if (document.domain == "vk.com") {
-            /* для VK у меня просто есть отдельный скрипт, скрывающий текстовые поля и фреймы в начале */
-            return false;
-        }
-
-        document.querySelectorAll('*[aria-hidden="true"]').forEach(elem=>{
-            elem.removeAttribute("aria-hidden");
-        });
-        
-        
-        
-/*<vdsina>*/
+/*<vdsina>*/if(document.domain.indexOf("vdsina")!=-1){
         document.querySelectorAll('span.btn').forEach(elem=>{
             if(elem.getAttribute("role")=="button") return true;
             elem.setAttribute("role", "button");
@@ -56,26 +43,35 @@ document.querySelectorAll('div[class*="disabled"]').forEach(elem=>{
 			setAttribute("aria-disabled", "true");
 			set_menu_clickable_from_keyboard(elem);
 			addEventListener("onclick", event=>{
-				let has_disabled=(getAttribute("class").indexOf("disabled")!=-1)?"true":"false";
-				setAttribute("aria-disabled", has_disabled);
+				setAttribute("aria-disabled", classList.contains("disabled")?"true":"false");
 			});
 		}
 	}
 });
-document.querySelectorAll('div[class*="selected"]').forEach(elem=>{
+document.querySelectorAll('div[class*="selected"], div[class*="-list-item"]').forEach(elem=>{
 	with(elem){
+		if(classList.contains("groups")){
+			if(getAttribute("tabindex")!="0"){
+				addEventListener("onclick", event=>{
+					setAttribute("aria-expanded", classList.contains("selected")?"true":"false");
+				});
+			}
+			setAttribute("tabindex", "0");
+			setAttribute("role", "button");
+			setAttribute("aria-expanded", classList.contains("selected")?"true":"false");
+			return;
+		}
 		let d = getAttribute("aria-checked");
 		if(d!="true" && d!="false") {
-			setAttribute("aria-checked", "true");
+			setAttribute("aria-checked", classList.contains("selected")?"true":"false");
 			set_menu_clickable_from_keyboard(elem);
 			addEventListener("onclick", event=>{
-				let has_selected=(getAttribute("class").indexOf("selected")!=-1)?"true":"false";
-				setAttribute("aria-checked", has_selected);
+				setAttribute("aria-checked", classList.contains("selected")?"true":"false");
 			});
 		}
 	}
 });
-/*</vdsina>*/
+}/*</vdsina>*/
 
         document.querySelectorAll("label").forEach(el=>{
             let checkbox_id = el.getAttribute('for');
@@ -92,6 +88,7 @@ document.querySelectorAll('div[class*="selected"]').forEach(elem=>{
                 }
             }
             if(!inp) return true;
+            if(getComputedStyle(inp).display!="none") return;
             var el_role = el.getAttribute('role');
             el_role=el_role?el_role.toLowerCase():"";
             if(el_role!="Radio" && el_role!="checkbox") {

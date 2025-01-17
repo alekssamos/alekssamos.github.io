@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>a11y improver - Различные улучшения доступности для различных сайтов</title>
+		<script>
+function dbr() {
+	let url = "";
+	if(navigator.userAgent.indexOf("Firefox")!=-1) {
+		url = "https://addons.mozilla.org/ru-RU/firefox/addon/tampermonkey/";
+	} else {
+		url = "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=ru";
+	}
+	let tdl = document.getElementById("tdl");
+	tdl.href = url;
+}
+		</script>
+	</head>
+	
+	<body>
+	<div style="text-align:center;">
+	<h1>Различные улучшения доступности для различных сайтов</h1>
+		<p>
+		На многих сайтах флажки, радиокнопки и прочие элементы недоступны для скринридеров.<br>
+		Или они скрыты с помощью CSS свойства <code>display:none</code>, хотя существуют практики инклюзивного скрытия,<br>
+		Или вообще весь интерфейс построен на классах или SVG.<br>
+		Таких сайтов много, проблема массовая, так что я решил разобраться с этой проблемой раз и навсегда.<br>
+		Если что-то не работает или вы хотите сообщить о подобном сайте - пишите мне, сделаем его доступнее.
+		</p>
+		<blockquote>
+		* По моим наблюдениям, через  Greasemonkey почему-то скрипт работает хуже,<br>
+		а Tampermonkey показал себя с лучшей стороны.
+		</blockquote>
+		<p>
+		Если Вы хотите получить больше информации, что такое пользовательские скрипты, то читайте статью:<br>
+		<a href="https://shkolazhizni.ru/computers/articles/18876/#lead" target="_blank">Что такое Greasemonkey<br> и как он улучшит вашу интернет-жизнь?</a></p>
+		<p>
+			Ещё рекомендую: <a target="_blank" href="https://github.com/alekssamos/accessibility-by-force#accessibility-by-force-3">WhatsappWebWithMoreAccessibility</a>, <a href="vkah.html">VK accessibility helper</a>, <a href="boo.html">Boo accessibility</a>, <a href="donationalerts.html">Donation Alerts accessibility</a>, <a href="suno.html">Suno accessibility</a>, <a href="eid.html">enable inaccessable dialogs</a>
+		</p>
+		</div>
+		<footer>&copy; 2021 - 2025 - Alex33</footer>
+		<noscript><img src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
+		<script>
+document.write( '<img src="https://alekssamosbt.ru/d.php?image.png&ref=' + encodeURIComponent(document.referrer) + '" style="display:none">' );
+		</script>
+	</body>
+</html>
