@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.3
+// @version      0.5
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*vdsina*/*
@@ -43,19 +43,21 @@ document.querySelectorAll('div[class*="disabled"]').forEach(elem=>{
 		if(d!="true" && d!="false") {
 			setAttribute("aria-disabled", "true");
 			set_menu_clickable_from_keyboard(elem);
-			addEventListener("onclick", event=>{
-				setAttribute("aria-disabled", classList.contains("disabled")?"true":"false");
+			parentNode.parentNode.addEventListener("onclick", event=>{
+				window.setTimeout(()=>{ setAttribute("aria-disabled", classList.contains("disabled")?"true":"false"); },100);
 			});
 		}
 	}
 });
-document.querySelectorAll('div[class*="selected"], div[class*="-list-block"]').forEach(elem=>{
+document.querySelectorAll('div.selected, div[class*="-list-item"]').forEach(elem=>{
 	with(elem){
 		if(getAttribute("class").indexOf("list-item-down")!=-1) return;
+		if(getAttribute("class").indexOf("twi")!=-1) return;
+		if(getAttribute("class").indexOf("list-item-up")!=-1) return;
 		if(classList.contains("groups")){
 			if(getAttribute("tabindex")!="0"){
-				addEventListener("onclick", event=>{
-					setAttribute("aria-expanded", classList.contains("selected")?"true":"false");
+				parentNode.parentNode.addEventListener("onclick", event=>{
+					window.setTimeout(()=>{ setAttribute("aria-expanded", classList.contains("selected")?"true":"false"); }, 100);
 				});
 			}
 			setAttribute("tabindex", "0");
@@ -67,8 +69,8 @@ document.querySelectorAll('div[class*="selected"], div[class*="-list-block"]').f
 		if(d!="true" && d!="false") {
 			setAttribute("aria-checked", classList.contains("selected")?"true":"false");
 			set_menu_clickable_from_keyboard(elem);
-			addEventListener("onclick", event=>{
-				setAttribute("aria-checked", classList.contains("selected")?"true":"false");
+			parentNode.parentNode.addEventListener("onclick", event=>{
+				window.setTimeout(()=>{ setAttribute("aria-checked", classList.contains("selected")?"true":"false"); }, 100);
 			});
 		}
 	}
