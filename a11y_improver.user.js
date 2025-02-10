@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.7
+// @version      0.8
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
@@ -23,14 +23,7 @@
 */
 
 (function() {
-    window.setInterval(function(){
-/*<vdsina>*/if(document.domain.indexOf("vdsina")!=-1){
-        document.querySelectorAll('span.btn').forEach(elem=>{
-            if(elem.getAttribute("role")=="button") return true;
-            elem.setAttribute("role", "button");
-            elem.setAttribute("tabindex", "0");
-        });
-        
+/*<vdsina>*/
 function set_menu_clickable_from_keyboard(elem){
 	elem.setAttribute("tabindex", "0");
 	elem.setAttribute("role", "menuitemradio");
@@ -39,6 +32,14 @@ function set_menu_clickable_from_keyboard(elem){
 		elem.parentNode.setAttribute("tabindex", "-1");
 	}
 }
+if(document.domain.indexOf("vdsina")!=-1){
+        document.querySelectorAll('span.btn').forEach(elem=>{
+            if(elem.getAttribute("role")=="button") return true;
+            elem.setAttribute("role", "button");
+            elem.setAttribute("tabindex", "0");
+        });
+        
+    window.setInterval(function(){
 document.querySelectorAll('div[class*="disabled"]').forEach(elem=>{
 	with(elem){
 		let d = getAttribute("aria-disabled");
@@ -77,8 +78,10 @@ document.querySelectorAll('div.selected, div[class*="-list-item"]').forEach(elem
 		}
 	}
 });
-}/*</vdsina>*/
-
+}
+},700);
+/*</vdsina>*/
+    window.setInterval(function(){
         document.querySelectorAll("label").forEach(el=>{
             let checkbox_id = el.getAttribute('for');
             var inp=undefined;
@@ -94,7 +97,7 @@ document.querySelectorAll('div.selected, div[class*="-list-item"]').forEach(elem
                 }
             }
             if(!inp) return true;
-            if(document.domain.indexOf("nekto")==-1 && getComputedStyle(inp).display!="none") return;
+            if(getComputedStyle(inp).display!="none") return;
             var el_role = el.getAttribute('role');
             el_role=el_role?el_role.toLowerCase():"";
             if(el_role!="Radio" && el_role!="checkbox") {
@@ -106,6 +109,8 @@ document.querySelectorAll('div.selected, div[class*="-list-item"]').forEach(elem
                 el.setAttribute('aria-checked', inp.checked?'true':'false');
             }
         });
+	},700);
+    window.setInterval(function(){
         document.querySelectorAll("button.checked").forEach(function(btn){
             let _attr = btn.getAttribute('aria-pressed');
             let _pb = btn.parentNode.parentNode;
