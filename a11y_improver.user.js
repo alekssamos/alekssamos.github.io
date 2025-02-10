@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.10
+// @version      0.11
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
@@ -36,7 +36,7 @@
             }
             if(!inp) {
                 let _tmp_inp = el.previousElementSibling;
-                if(_tmp_inp.tagName.toLowerCase()=="input" && _tmp_inp.id=="") {
+                if(!!_tmp_inp && _tmp_inp.tagName.toLowerCase()=="input" && _tmp_inp.id=="") {
                     inp = _tmp_inp;
                 }
             }
