@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.14
+// @version      0.15
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
@@ -29,7 +29,7 @@
 
 
     window.setInterval(function(){
-        if(document.domain.toLowerCase().indexOf("findcl")){
+        if(document.domain.toLowerCase().indexOf("findcl")!=-1){
             let cm =document.querySelector("i.fa-camera");
             if (!!cm) {
                 cm.setAttribute("tabindex", "0");
