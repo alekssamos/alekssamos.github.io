@@ -2,10 +2,11 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.15
+// @version      0.16
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
+// @include        *://*pikabu*/*
 // @include        *://*findcl*/*
 // @include        *://*phon*/*
 // @include        *://*star*/*
