@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.16
+// @version      0.17
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
@@ -25,11 +25,40 @@
 Я решил из этого скрипта сделать универсальный код, который охватывает как можно больше случаев, как можно больше сайтов.
 */
 
+///////<
+// для редактора постов пикабу
+function pkb_sign_editor_ctrl_button(data_test, label) {
+    let el = document.querySelector('button[data-test="'+data_test+'"]');
+    if (!el) return false;
+    el.setAttribute("aria-label", label);
+    return true;
+}
+
+let ctrl_labels = {
+    "editor-ctrl-heading": "Заголовок",
+    "editor-ctrl-bold": "Жирный",
+    "editor-ctrl-italic": "курсивный",
+    "editor-ctrl-strike": "Зачеркнутый",
+    "editor-ctrl-link": "Вставить ссылку",
+    "editor-ctrl-quote": "Цитата",
+	"editor-ctrl-highlight": "Подчеркнутый",
+	"editor-ctrl-spoiler": "Спойлер",
+	"editor-ctrl-marker": "Маркер?",
+	"editor-ctrl-ul": "Unordered list?",
+	"editor-ctrl-dnd-start": "Разделитель?",
+};
+
+///////>
 (function() {
 
 
 
     window.setInterval(function(){
+        if(document.domain.toLowerCase().indexOf("pikabu")!=-1){
+            Object.keys(ctrl_labels).forEach((k) => {
+                pkb_sign_editor_ctrl_button(k, ctrl_labels[k]);
+            });
+        }
         if(document.domain.toLowerCase().indexOf("findcl")!=-1){
             let cm =document.querySelector("i.fa-camera");
             if (!!cm) {
