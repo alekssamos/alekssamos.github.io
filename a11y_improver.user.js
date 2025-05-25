@@ -6,6 +6,7 @@
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
+// @include        https://*azbyk*/*
 // @include        *://*pikabu*/*
 // @include        *://*findcl*/*
 // @include        *://*phon*/*
