@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.17
+// @version      0.18
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
@@ -106,6 +106,13 @@ let ctrl_labels = {
             }
         });
 	},700);
+    ///////////<
+    window.setInterval(function(){
+        document.querySelectorAll("img[src*='/znakomstva/public/user/']").forEach(elem=>{
+            elem.setAttribute("alt", "Фото профиля");
+        });
+    }, 1000);
+    ///////////>
     window.setInterval(function(){
         document.querySelectorAll("button.checked").forEach(function(btn){
             let _attr = btn.getAttribute('aria-pressed');
