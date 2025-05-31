@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.18
+// @version      0.19
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*habr*/*
@@ -78,6 +78,10 @@ let ctrl_labels = {
         }
         document.querySelectorAll("button[data-hint], img[data-hint]").forEach(function(el){
             el.setAttribute("aria-label", el.getAttribute("data-hint"));
+        });
+        document.querySelectorAll('div[class="data-original-title"]').forEach(elem=>{
+            elem.setAttribute("tabindex", "0");
+            elem.setAttribute("aria-label", elem.getAttribute("data-original-title"));
         });
         document.querySelectorAll("label").forEach(el=>{
             let checkbox_id = el.getAttribute('for');
