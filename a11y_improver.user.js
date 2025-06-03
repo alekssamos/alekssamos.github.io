@@ -53,6 +53,22 @@ let ctrl_labels = {
 (function() {
 
 
+    window.setTimeout(function(){
+        mystyle = `
+div.message.unread::after {
+    content: "Сообщение не прочитано";
+    position: absolute;
+    width: 1px;  /* ширина 1 пиксель */
+    height: 1px; /* высота 1 пиксель */
+    overflow: hidden; /* скрываем содержимое */
+    clip: rect(0, 0, 0, 0); /* используем обрезку */
+    white-space: nowrap; /* предотвращаем перенос текста */
+}
+        `;
+        let st=document.createElement("Style");
+        st.innerText=mystyle;
+        document.body.appendChild(st);
+    }, 500);
 
     window.setInterval(function(){
         if(document.domain.toLowerCase().indexOf("pikabu")!=-1){
