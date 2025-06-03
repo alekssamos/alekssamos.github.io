@@ -104,7 +104,7 @@ div.message.unread::after {
         document.querySelectorAll('div[data-original-title], i[data-original-title]').forEach(elem=>{
             if (elem.innerText.replace(" ","").length>2) return true;
             elem.setAttribute("tabindex", "0");
-            elem.setAttribute("aria-label", elem.getAttribute("data-original-title");
+            elem.setAttribute("aria-label", elem.getAttribute("data-original-title"));
             elem.setAttribute("role", "button");
         });
         document.querySelectorAll("label").forEach(el=>{
