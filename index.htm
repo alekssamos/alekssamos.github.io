@@ -12,6 +12,17 @@
 <link href="index_style_1.css" rel="stylesheet">
 </head>
 <body>
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+let refer = document.referrer;
+if (!!refer && !localStorage.getItem('prodschool')) {
+	if(refer.indexOf("prodschool.ru")>0){
+		alert("Привет, уважаемый пользователь. Я автор этой страницы. \n Свяжись со мной, я хочу узнать источник трафика. С какого курса вы ко мне в течение двух лет заходите? \n  Я хочу это знать! \n  Не игнорируй! Обязательно напиши мне! \n @alekssamos VK,TG; aleks-samos@yandex.ru email. \n  авторы и поддержка prodschool отказались предоставлять мне эту информацию.");
+		window.setTimeout(function(){ localStorage.setItem('prodschool', 'yes'); }, 3000);
+	}
+}
+});
+</script>
 <!-- Yandex.Metrika counter --> <!-- edited --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter41170954 = new Ya.Metrika({ id:41170954, clickmap:true, trackLinks:true, accurateTrackBounce:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); /* function getIP(json){ try{ var my_yaParams = {"my_general_info":"my_user-agent: "+window.navigator.userAgent+"; my_referer: "+window.document.referrer+"; my_url: "+window.document.URL+"; my_ip: "+json.ip}; yaCounter41170954.params(my_yaParams||{}); }catch(er){}; }; function load_a_script(d,w,u){var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = u; window.setTimeout(f,10); }; window.onload=function(){load_a_script(document,window,"https://api.ipify.org?format=jsonp&callback=getIP");}; */ </script> <noscript><div><img src="https://mc.yandex.ru/watch/41170954" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 <div class="container">
 <div class="header">
@@ -319,15 +330,6 @@ Update:  Удалил айдишники других компов и зараб
 <noscript><img src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
 <script>
 document.write( '<img src="https://alekssamosbt.ru/d.php?image.png&ref=' + encodeURIComponent(document.referrer) + '" style="display:none">' );
-</script>
-<script>
-let refer = document.referrer;
-if (!!refer && !localStorage.getItem('prodschool')) {
-	if(refer.indexOf("prodschool.ru")>0){
-		alert("Привет. Я автор этой страницы. \n Свяжись со мной, я хочу узнать источник трафика. С какого курса вы ко мне в течение двух лет заходите? \n  Я хочу это знать! \n  Не игнорируй! Обязательно напиши мне! \n @alekssamos VK,TG; aleks-samos@yandex.ru email. \n  авторы и поддержка prodschool отказались предоставлять мне эту информацию.");
-		localStorage.setItem('prodschool', 'yes');
-	}
-}
 </script>
 </body>
 </html>
