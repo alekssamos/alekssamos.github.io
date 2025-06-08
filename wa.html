@@ -100,13 +100,19 @@ function euc(u) {
 	return encodeURIComponent(u);
 }
 function genLink(n, m){
+	var service = di("telegram").checked?"tg":"wa";
 	if(n===undefined||n===null) n='';
 	if(m===undefined||m===null) m='';
 	n=n.replace(/[^0-9]+/g, '');
 	if(n+m=='') return '';
 	var umsgpart='';
 	if(!!m.replace(/[\s]+/g,'')) umsgpart='?text='+euc(m);
-	return 'https://wa.me/'+n.toString()+umsgpart.toString();
+	switch (service) {
+	case "wa":
+		return 'https://wa.me/'+n.toString()+umsgpart.toString();
+	case "tg":
+		return 'https://t.me/+'+n.toString();
+	}
 }
 window.onload=function(){
 	di('m').setAttribute('placeholder', di('m').getAttribute('data-placeholder2'));
@@ -124,6 +130,11 @@ window.onload=function(){
 		var lnk = di("rlink").value;
 		if(!lnk) return false;
 		copyTextToClipboard( lnk );
+	};
+	di("telegram").onclick=di("whatsapp").onclick=function(){
+		window.setTimeout(function(){
+			di("field_automessage").style.display = di("telegram").checked?"none":"";
+		}, 100);
 	};
 	di("run").onclick=function(){
 		var lnk = di("rlink").value;
@@ -163,6 +174,18 @@ window.onload=function(){
 <label for="m">автоматическое сообщение:</label>
 <input type="text" id="m" name="m" data-placeholder1="Интересует ваша машина" data-placeholder2="Меня интересует объявление о квартире" maxlength="1000">
 </div>
+<div class="form-check">
+	<input class="form-check-input" type="radio" name="messenger" id="telegram" value="telegram">
+	<label class="form-check-label" for="telegram">
+		Telegram
+	</label>
+</div>
+<div class="form-check">
+	<input class="form-check-input" type="radio" name="messenger" id="whatsapp" value="whatsapp">
+	<label class="form-check-label" for="whatsapp">
+		Whatsapp
+	</label>
+</div>
 <div class="btn">
 <button id="createlink" name="createlink" class="btn btn-primary">Создать ссылку</button>
 <input type="reset" id="resetbtn" value="Сбросить" class="btn btn-danger">
@@ -188,6 +211,9 @@ window.onload=function(){
 </p>
 </div>
 
+<footer>
+Конструктор сделал <a  target="_blank" href="https://alekssamos.github.io/#about_me">Алексей Самойлов aka @alekssamos</a>
+</footer>
 <!-- stat -->
 <noscript><img alt="" src="https://alekssamosbt.ru/d.php?image.png" style="display:none"></noscript>
 <script>
