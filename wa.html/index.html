@@ -57,14 +57,14 @@ self.addEventListener('fetch', function(event) {
         });
         return response;
       }).catch(function () {
-        return caches.match('/wa.html');
+        return caches.match('/wa.html/');
       });
     }
   }));
 });
 // register service worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(function(reg) {
+  navigator.serviceWorker.register('/sw.js', { scope: '/wa.html/' }).then(function(reg) {
     if(reg.installing) {
       console.log('Service worker installing');
     } else if(reg.waiting) {
