@@ -123,6 +123,7 @@ function genLink(n, m){
 	if(m===undefined||m===null) m='';
 	n=n.replace(/[^0-9]+/g, '');
 	if(n+m=='') return '';
+	if(service!='wa'&&n=='') return '';
 	var umsgpart='';
 	if(!!m.replace(/[\s]+/g,'')) umsgpart='?text='+euc(m);
 	switch (service) {
@@ -135,9 +136,9 @@ function genLink(n, m){
 window.onload=function(){
 	di('m').setAttribute('placeholder', di('m').getAttribute('data-placeholder2'));
 	di('n').setAttribute('placeholder', di('n').getAttribute('data-placeholder1'));
-	di("n").onfocus=function(){ di("n").setAttribute('placeholder', di("n").getAttribute('data-placeholder1')) };
-	di("n").onblur=function(){ di("n").removeAttribute('placeholder') };
-	di("m").onfocus=di("n").onchange=function(){
+	// di("n").onfocus=function(){ di("n").setAttribute('placeholder', di("n").getAttribute('data-placeholder1')) };
+	// di("n").onblur=function(){ di("n").removeAttribute('placeholder') };
+	di("m").onchange=di("n").onchange=function(){
 		if(di("n").value.replace(/[^0-9]+/g,'').length==0){
 			di('m').setAttribute('placeholder', di('m').getAttribute('data-placeholder2'));
 		} else {
@@ -160,7 +161,8 @@ window.onload=function(){
 		window.location.href = lnk;
 	};
 	di('createlink').onclick=function(){
-		if(di('n').value.length > 22 || (di('n').value.length < 11 && di('n').value.length > 1) || di('n').value[0]=='8' || di('n').value[0]=='0') {
+		let num = di('n').value.replace(/[^0-9]+/g,'');
+		if(num.length > 22 || (num.length < 11 && num.length > 0) || num[0]=='8' || num[0]=='0') {
 			alert('Введите номер в международном формате с кодом страны. Не 8, а +7, не 0, а, например, +380');
 			di('n').focus();
 			return false;
