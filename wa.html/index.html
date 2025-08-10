@@ -130,7 +130,7 @@ function genLink(n, m){
 	case "wa":
 		return 'https://wa.me/'+n.toString()+umsgpart.toString();
 	case "tg":
-		return 'https://t.me/+'+n.toString();
+		return 'https://t.me/+'+n.toString()+umsgpart.toString();
 	}
 }
 window.onload=function(){
@@ -149,11 +149,6 @@ window.onload=function(){
 		var lnk = di("rlink").value;
 		if(!lnk) return false;
 		copyTextToClipboard( lnk );
-	};
-	di("telegram").onclick=di("whatsapp").onclick=function(){
-		window.setTimeout(function(){
-			di("field_automessage").style.display = di("telegram").checked?"none":"";
-		}, 100);
 	};
 	di("run").onclick=function(){
 		var lnk = di("rlink").value;
