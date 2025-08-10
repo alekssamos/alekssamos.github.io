@@ -22,7 +22,7 @@ if(document.URL.indexOf("/index.html")!=-1) {
 <link rel="apple-touch-icon" sizes="180x180" href="/wa.html/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Генератор ссылок WhatsApp" />
 <link rel="manifest" href="/wa.html/site.webmanifest" />
-<title>Генератор ссылок Whatsapp поделиться номером телефона WA.ME</title>
+<title>Генератор ссылок Whatsapp / Telegram поделиться номером телефона WA.ME, T.ME</title>
 <script>
 self.addEventListener('install', function(event) {
   event.waitUntil(
@@ -117,15 +117,23 @@ function di(i) {
 function euc(u) {
 	return encodeURIComponent(u);
 }
+function get_username_if_ns(n){
+	var orig_n = n.replace("@","").replace("+","");
+	if(orig_n.match(/[a-z._-]+/i)!=null) {
+		return orig_n;
+	}
+}
 function genLink(n, m){
+	var user = get_username_if_ns(n);
 	var service = di("telegram").checked?"tg":"wa";
 	if(n===undefined||n===null) n='';
 	if(m===undefined||m===null) m='';
 	n=n.replace(/[^0-9]+/g, '');
 	if(n+m=='') return '';
-	if(service!='wa'&&n=='') return '';
+	if(service!='wa'&&n==''&&user=="") return '';
 	var umsgpart='';
 	if(!!m.replace(/[\s]+/g,'')) umsgpart='?text='+euc(m);
+	if(user!="" && service=="tg") return 'https://t.me/'+orig_n.toString()+umsgpart.toString();
 	switch (service) {
 	case "wa":
 		return 'https://wa.me/'+n.toString()+umsgpart.toString();
@@ -157,7 +165,8 @@ window.onload=function(){
 	};
 	di('createlink').onclick=function(){
 		let num = di('n').value.replace(/[^0-9]+/g,'');
-		if(num.length > 22 || (num.length < 11 && num.length > 0) || num[0]=='8' || num[0]=='0') {
+		let user = get_username_if_ns(n);
+		if((user=='') && (num.length > 22 || (num.length < 11 && num.length > 0) || num[0]=='8' || num[0]=='0')) {
 			alert('Введите номер в международном формате с кодом страны. Не 8, а +7, не 0, а, например, +380');
 			di('n').focus();
 			return false;
@@ -446,7 +455,7 @@ footer a:hover, footer a:focus {
 <div class="mainform">
 <form onsubmit="return false">
 <div class="field">
-<label for="n">Номер:</label>
+<label for="n">Номер или имя пользователя:</label>
 <input type="tel" id="n" name="n" data-placeholder1="+7 (901) 234-56-78">
 </div>
 <div class="field" id="field_automessage">
