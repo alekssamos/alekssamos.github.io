@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <script>
-if(document.URL.indexOf("/index.html")!=-1) {
+if(document.location.protocol!="file:"&&document.URL.indexOf("/index.html")!=-1) {
 	window.location.replace("https://alekssamos.github.io/wa.html/");
 }
 </script>
@@ -117,23 +117,28 @@ function di(i) {
 function euc(u) {
 	return encodeURIComponent(u);
 }
+function get_service() {
+	return di("telegram").checked?"tg":"wa";
+}
 function get_username_if_ns(n){
-	var orig_n = n.replace("@","").replace("+","");
+	var service = get_service();
+	if(service!="tg") return "";
+	var orig_n = n.toString().replace("@","").replace("+","");
 	if(orig_n.match(/[a-z._-]+/i)!=null) {
 		return orig_n;
 	}
 }
 function genLink(n, m){
 	var user = get_username_if_ns(n);
-	var service = di("telegram").checked?"tg":"wa";
+	var service = get_service();
 	if(n===undefined||n===null) n='';
 	if(m===undefined||m===null) m='';
 	n=n.replace(/[^0-9]+/g, '');
-	if(n+m=='') return '';
+	if(n+m==''&&user=="") return '';
 	if(service!='wa'&&n==''&&user=="") return '';
 	var umsgpart='';
 	if(!!m.replace(/[\s]+/g,'')) umsgpart='?text='+euc(m);
-	if(user!="" && service=="tg") return 'https://t.me/'+orig_n.toString()+umsgpart.toString();
+	if(user!="" && service=="tg") return 'https://t.me/'+user+umsgpart.toString();
 	switch (service) {
 	case "wa":
 		return 'https://wa.me/'+n.toString()+umsgpart.toString();
@@ -164,8 +169,9 @@ window.onload=function(){
 		window.location.href = lnk;
 	};
 	di('createlink').onclick=function(){
-		let num = di('n').value.replace(/[^0-9]+/g,'');
-		let user = get_username_if_ns(n);
+		let orig_num = di('n').value;
+		let num = orig_num.replace(/[^0-9]+/g,'');
+		let user = get_username_if_ns(orig_num);
 		if((user=='') && (num.length > 22 || (num.length < 11 && num.length > 0) || num[0]=='8' || num[0]=='0')) {
 			alert('Введите номер в международном формате с кодом страны. Не 8, а +7, не 0, а, например, +380');
 			di('n').focus();
