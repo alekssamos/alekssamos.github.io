@@ -121,6 +121,7 @@ function get_service() {
 	return di("telegram").checked?"tg":"wa";
 }
 function get_username_if_ns(n){
+	if(n===undefined||n===null) n='';
 	var service = get_service();
 	if(service!="tg") return "";
 	var orig_n = n.toString().replace("@","").replace("+","");
@@ -129,16 +130,16 @@ function get_username_if_ns(n){
 	}
 }
 function genLink(n, m){
-	var user = get_username_if_ns(n);
 	var service = get_service();
 	if(n===undefined||n===null) n='';
 	if(m===undefined||m===null) m='';
+	var user = get_username_if_ns(n);
 	n=n.replace(/[^0-9]+/g, '');
 	if(n+m==''&&user=="") return '';
 	if(service!='wa'&&n==''&&user=="") return '';
 	var umsgpart='';
 	if(!!m.replace(/[\s]+/g,'')) umsgpart='?text='+euc(m);
-	if(user!="" && service=="tg") return 'https://t.me/'+user+umsgpart.toString();
+	if(!!user && service=="tg") return 'https://t.me/'+user+umsgpart.toString();
 	switch (service) {
 	case "wa":
 		return 'https://wa.me/'+n.toString()+umsgpart.toString();
