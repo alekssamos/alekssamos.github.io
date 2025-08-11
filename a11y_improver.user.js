@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.25
+// @version      0.26
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*urals*/*
@@ -159,9 +159,8 @@ div.message.unread::after {
     window.setInterval(function(){
         document.querySelectorAll("button.checked").forEach(function(btn){
             let _attr = btn.getAttribute('aria-pressed');
-            let _pb = btn.parentNode.parentNode;
             if(_attr==='true' || _attr==='false') return true;
-            _pb.addEventListener('click', event=>{btn.setAttribute('aria-pressed', btn.classList.contains("checked")?'true':'false');});
+            document.body.addEventListener('click', event=>{btn.setAttribute('aria-pressed', btn.classList.contains("checked")?'true':'false');});
             btn.setAttribute('aria-pressed', btn.classList.contains("checked")?'true':'false');
         });
     }, 700);
