@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.26
+// @version      0.27
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*urals*/*
@@ -162,6 +162,16 @@ div.message.unread::after {
             if(_attr==='true' || _attr==='false') return true;
             document.body.addEventListener('click', event=>{btn.setAttribute('aria-pressed', btn.classList.contains("checked")?'true':'false');});
             btn.setAttribute('aria-pressed', btn.classList.contains("checked")?'true':'false');
+        });
+    }, 700);
+    window.setInterval(function(){
+        document.querySelectorAll("div.roulette-params__item").forEach(function(btn){
+            let _attr = btn.getAttribute('aria-pressed');
+            if(_attr==='true' || _attr==='false') return true;
+            document.body.addEventListener('click', event=>{btn.setAttribute('aria-pressed', btn.classList.contains("roulette-params__item--active")?'true':'false');});
+            btn.setAttribute("role", "button");
+            btn.setAttribute("tabindex", "0");
+            btn.setAttribute('aria-pressed', btn.classList.contains("roulette-params__item--active")?'true':'false');
         });
     }, 700);
 })();
