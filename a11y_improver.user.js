@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.27
+// @version      0.28
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*urals*/*
@@ -71,6 +71,15 @@ let ctrl_labels = {
         mystyle = `
 div.message.unread::after {
     content: "Сообщение не прочитано";
+    position: absolute;
+    width: 1px;  /* ширина 1 пиксель */
+    height: 1px; /* высота 1 пиксель */
+    overflow: hidden; /* скрываем содержимое */
+    clip: rect(0, 0, 0, 0); /* используем обрезку */
+    white-space: nowrap; /* предотвращаем перенос текста */
+}
+div.active.::after {
+    content: " (Выбрано) ";
     position: absolute;
     width: 1px;  /* ширина 1 пиксель */
     height: 1px; /* высота 1 пиксель */
