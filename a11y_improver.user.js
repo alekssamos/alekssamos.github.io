@@ -2,7 +2,7 @@
 // @name         various accessibility improvements for different sites
 // @namespace    http://tampermonkey.net/
 // @homepage    https://alekssamos.github.io/a11y.html
-// @version      0.28
+// @version      0.29
 // @description  Making accessable checkboxes, buttons, and other elements on different sites.
 // @author       alekssamos
 // @include        *://*urals*/*
@@ -78,7 +78,7 @@ div.message.unread::after {
     clip: rect(0, 0, 0, 0); /* используем обрезку */
     white-space: nowrap; /* предотвращаем перенос текста */
 }
-div.active.::after {
+.active::after {
     content: " (Выбрано) ";
     position: absolute;
     width: 1px;  /* ширина 1 пиксель */
